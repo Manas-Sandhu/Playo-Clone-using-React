@@ -30,6 +30,7 @@ export default function Footer() {
     <div>
       {/* ── Footer ── */}
       <footer className="footer">
+        
         <div className="footer-top">
           <div className="footer-brand-col">
             <div className="footer-logo">
@@ -42,14 +43,13 @@ export default function Footer() {
               <div className="cities-grid">
                 {visibleCities.map((city) => (
                   <button key={city} className="city-btn">
-                    {city} ∨
+                    {city}
                   </button>
                 ))}
               </div>
               <button
                 className="cities-toggle"
-                onClick={(e) => {
-                  e.stopPropagation();
+                onClick={() => {
                   setShowAllCities(!showAllCities);
                 }}
               >
@@ -78,9 +78,12 @@ export default function Footer() {
           </div>
         </div>
 
+
         <div className="footer-bottom">
-          <span>© 2026 Techmash Solutions Pvt. Ltd. All Rights Reserved.</span>
+          <span>Project made by Manas and Palak 2026 WAP project!</span>
         </div>
+
+
       </footer>
     </div>
   );

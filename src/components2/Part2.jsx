@@ -11,6 +11,7 @@ const venues = [
 function Part2() {
   return (
     <section className="book-venues">
+
       <div className="book-venues-header">
         <div>
           <h2 className="section-title">Book Venues Near You</h2>

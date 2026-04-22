@@ -43,7 +43,9 @@ const faqs = [
 const AboutFAQ = () => {
   const [openFaq, setOpenFaq] = useState(null);
 
-  const toggleFaq = (i) => setOpenFaq(openFaq === i ? null : i);
+  const toggleFaq = (i) => { 
+    return setOpenFaq(openFaq === i ? null : i)
+  };
 
   return (
     <div className="about-faq-wrapper">
@@ -81,6 +83,7 @@ const AboutFAQ = () => {
 
       {/* ── FAQ ── */}
       <section className="faq-section">
+
         <div className="faq-inner">
           <h2 className="faq-title">Frequently Asked Questions</h2>
           <ul className="faq-list">
@@ -101,10 +104,8 @@ const AboutFAQ = () => {
             ))}
           </ul>
         </div>
+        
       </section>
-
-      
-
     </div>
   );
 };

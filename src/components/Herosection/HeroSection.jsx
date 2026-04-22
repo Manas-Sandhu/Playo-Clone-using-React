@@ -55,9 +55,6 @@ const HeroSection = () => {
                 />
               </div>
             </div>
-            <div className="hero-badge">
-              <span>🎾</span>
-            </div>
           </div>
         </div>
       </div>
