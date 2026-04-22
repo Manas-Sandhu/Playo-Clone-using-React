@@ -1,16 +1,109 @@
-# React + Vite
+# 🎮 Playo Clone (React)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern **Playo-inspired sports booking platform UI** built using React.
+This project replicates core UI flows like browsing, booking, and exploring sports activities with a clean and responsive interface.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Features
 
-## React Compiler
+* 🏃 **Play Section** – Discover sports activities and venues
+* 📅 **Book Section** – Explore and book available slots
+* 🎓 **Train Section** – View training programs
+* 🔗 **Client-side Routing** using React Router
+* 🎨 Clean and responsive UI
+* ⚡ Fast development with Vite
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* ⚛️ React
+* ⚡ Vite
+* 🎯 React Router DOM
+* 🎨 CSS
+
+---
+
+## 📂 Project Structure
+
+```
+src/
+│── components/
+│   └── Navbar.jsx
+│── Home.jsx
+│── Play.jsx
+│── App.jsx
+│── main.jsx
+│── App.css
+```
+
+---
+
+## ⚙️ Installation & Setup
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Manas-Sandhu/Playo-Clone-using-React.git
+```
+
+Navigate to the project folder:
+
+```bash
+cd Playo-Clone-using-React
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+---
+
+## 🌐 Routes
+
+* `/` → Home
+* `/home` → Book page
+* `/play` → Play page
+
+---
+
+## 📸 Screenshots
+
+*(Add screenshots here once UI is complete)*
+
+---
+
+## 📌 Future Improvements
+
+* 🔐 Authentication (Login/Signup)
+* 📍 Location-based venue search
+* 💳 Booking & payment integration
+* 📱 Fully responsive mobile design
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+Feel free to fork this repo and submit a pull request.
+
+---
+
+## 📄 License
+
+This project is for educational purposes only.
+
+---
+
+## 👨‍💻 Author
+
+Developed by **Palakpreet Kaur and Manas Sandhu**
