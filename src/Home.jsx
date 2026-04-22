@@ -1,10 +1,10 @@
-import React from 'react';
-import './App.css';
-import HeroSection from './components/HeroSection.jsx'
-import BookVenues from './components/BookVenues.jsx';
-import DiscoverGames from './components/DiscoverGames.jsx';
-import PopularSports from './components/PopularSports.jsx';
-import AboutFAQ from './components/AboutFAQ.jsx';
+import React from "react";
+import "./Home.css";
+import HeroSection from "./components/Herosection/HeroSection.jsx";
+import BookVenues from "./components/BookVenues/BookVenues.jsx";
+import DiscoverGames from "./components/DiscoverGames/DiscoverGames.jsx";
+import PopularSports from "./components/PopularSports/PopularSports.jsx";
+import AboutFAQ from "./components/AboutFAQ/AboutFAQ.jsx";
 
 function Home() {
   return (

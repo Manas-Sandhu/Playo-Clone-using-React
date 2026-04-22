@@ -12,6 +12,7 @@ const games = [
     date: 'Wed, 22 Apr 2026, 07:30 PM - 08:30 PM',
     venue: 'Machaxi Active Sport... ~1.00 Kms',
     level: 'Beginner - Professional',
+    price: 'INR 120',
     booked: true,
     avatars: ['https://picsum.photos/32/32?random=1', 'https://picsum.photos/32/32?random=2'],
   },
@@ -51,6 +52,7 @@ const games = [
     date: 'Sun, 26 Apr 2026, 06:00 PM - 07:00 PM',
     venue: 'Machaxi Active Sport... ~1.00 Kms',
     level: 'Amateur - Intermediate',
+    price: 'INR 300',
     booked: false,
     avatars: ['https://picsum.photos/32/32?random=7'],
   },
@@ -64,6 +66,7 @@ const games = [
     date: 'Tue, 21 Apr 2026, 07:00 PM - 08:00 PM',
     venue: 'Basecamp by Push Spo... ~1.41 Kms',
     level: 'Intermediate - Professional',
+    price: 'INR 1000',
     booked: true,
     avatars: ['https://picsum.photos/32/32?random=8'],
   },
@@ -122,9 +125,12 @@ const games = [
   },
 ];
 
+
+
 function GameCard({ game }) {
   return (
     <div className="game-card">
+
       <div className="game-card-header">
         <div className="game-tags">
           {game.type && <span className="game-type-tag">{game.type}</span>}
@@ -140,11 +146,10 @@ function GameCard({ game }) {
           ))}
         </div>
         <span className="game-going-count">{game.going} Going</span>
-        {game.slots && <span className="slots-badge">🔥 Only {game.slots} Slots</span>}
       </div>
 
       <div className="game-host">
-        {game.host} | {game.karma.toLocaleString()} Karma
+        {game.host} | {game.karma} Points
       </div>
 
       <div className="game-date">📅 {game.date}</div>
@@ -157,6 +162,10 @@ function GameCard({ game }) {
     </div>
   );
 }
+
+
+
+
 
 function Part3() {
   return (
@@ -184,6 +193,7 @@ function Part3() {
         </div>
       </div>
 
+
       {/* Filter Bar */}
       <div className="filter-bar">
         <button className="filter-toggle">
@@ -202,7 +212,8 @@ function Part3() {
           <GameCard key={game.id} game={game} />
         ))}
       </div>
-
+      
+        {/* Load More Button */}
       <div className="load-more-wrapper">
         <button className="load-more-btn">LOAD MORE</button>
       </div>

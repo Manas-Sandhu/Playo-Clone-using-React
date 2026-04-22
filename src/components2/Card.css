@@ -1,0 +1,152 @@
+/* ── Card container ───────────────────────────────────────────── */
+.play-card {
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+  font-family: 'Segoe UI', sans-serif;
+  color: #1a1a1a;
+}
+
+.play-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ── Top row ──────────────────────────────────────────────────── */
+.play-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.play-card__tags {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.play-card__game-type {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+}
+
+.play-card__dot {
+  font-size: 13px;
+  color: #999;
+}
+
+.play-card__format {
+  font-size: 13px;
+  color: #666;
+}
+
+.play-card__price {
+  font-size: 13px;
+  font-weight: 700;
+  color: #e67e00;
+}
+
+/* ── Going row ────────────────────────────────────────────────── */
+.play-card__going-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.play-card__avatars {
+  display: flex;
+  flex-direction: row;
+}
+
+.play-card__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  object-fit: cover;
+  margin-left: -8px;
+}
+
+.play-card__avatars .play-card__avatar:first-child {
+  margin-left: 0;
+}
+
+.play-card__going-count {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111;
+}
+
+/* ── Host ─────────────────────────────────────────────────────── */
+.play-card__host {
+  font-size: 13px;
+  color: #444;
+  margin: 0;
+}
+
+.play-card__karma {
+  color: #777;
+}
+
+/* ── Date & Venue ─────────────────────────────────────────────── */
+.play-card__date,
+.play-card__venue {
+  font-size: 13px;
+  color: #333;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.play-card__icon {
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.play-card__distance {
+  color: #888;
+  font-size: 12px;
+}
+
+/* ── Bottom row ───────────────────────────────────────────────── */
+.play-card__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.play-card__skill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #f3f3f3;
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 12px;
+  color: #444;
+  font-weight: 500;
+}
+
+.play-card__skill-icon {
+  font-size: 13px;
+}
+
+.play-card__booked {
+  background: #1db954;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 6px;
+  padding: 5px 12px;
+  letter-spacing: 0.5px;
+}
