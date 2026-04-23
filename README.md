@@ -1,18 +1,95 @@
-# 🎮 Playo Clone (React)
+# 🎮 Playo Clone (React + Vite)
 
-A modern **Playo-inspired sports booking platform UI** built using React.
-This project replicates core UI flows like browsing, booking, and exploring sports activities with a clean and responsive interface.
+A modern **Playo-inspired sports platform UI** built using React.
+This project demonstrates **component-based architecture, reusable layouts, and client-side routing** to simulate a real-world sports booking application.
+
+---
+
+## 🌟 Overview
+
+This app recreates the experience of a sports platform where users can:
+
+* 🏃 Discover sports activities
+* 📅 Book venues
+* 🎓 Explore training programs
+* ❓ Learn through FAQs
+
+It uses a **shared layout system** with a persistent Navbar and Footer across all pages.
+
+---
+
+## 🧠 Architecture Highlights
+
+### 🧩 Layout-Based Routing
+
+* Central `Layout.jsx` component:
+
+  * ✅ Navbar (top)
+  * ✅ Dynamic content (`Outlet`)
+  * ✅ Footer (bottom)
+* Ensures **consistent UI across all routes**
+
+```jsx
+<Navbar />
+<Outlet />
+<Footer />
+```
 
 ---
 
 ## 🚀 Features
 
-* 🏃 **Play Section** – Discover sports activities and venues
-* 📅 **Book Section** – Explore and book available slots
-* 🎓 **Train Section** – View training programs
-* 🔗 **Client-side Routing** using React Router
-* 🎨 Clean and responsive UI
-* ⚡ Fast development with Vite
+### 🔗 Routing System
+
+* Built with React Router
+* Nested routes using `Outlet`
+* Pages:
+
+  * `/` → Home
+  * `/play` → Play
+  * `/about` → About / FAQ
+
+---
+
+### 🏠 Home Page
+
+* Hero section for first impression
+* Venue booking UI
+* Game discovery section
+* Popular sports showcase
+* FAQ section
+
+---
+
+### 🏃 Play Page
+
+* Multi-section layout using:
+
+  * `Part2`, `Part3`, `Part4`
+* Card-based UI for activities
+* Designed for scalability
+
+---
+
+### ❓ About / FAQ Page
+
+* Frequently asked questions
+* Platform information
+
+---
+
+### 🧭 Navbar
+
+* Navigation across pages
+* Uses React Router (`Link` / `NavLink`)
+* Persistent across all routes
+
+---
+
+### 📌 Footer
+
+* Common footer across all pages
+* Improves layout completeness
 
 ---
 
@@ -20,22 +97,35 @@ This project replicates core UI flows like browsing, booking, and exploring spor
 
 * ⚛️ React
 * ⚡ Vite
-* 🎯 React Router DOM
+* 🧭 React Router
 * 🎨 CSS
 
 ---
 
 ## 📂 Project Structure
 
-```
+```bash
 src/
 │── components/
-│   └── Navbar.jsx
+│   ├── Navbar/
+│   ├── Footer/
+│   ├── Herosection/
+│   ├── BookVenues/
+│   ├── DiscoverGames/
+│   ├── PopularSports/
+│   ├── AboutFAQ/
+│
+│── components2/
+│   ├── Card.jsx
+│   ├── Part2.jsx
+│   ├── Part3.jsx
+│   ├── Part4.jsx
+│
+│── Layout.jsx
 │── Home.jsx
 │── Play.jsx
 │── App.jsx
 │── main.jsx
-│── App.css
 ```
 
 ---
@@ -46,11 +136,6 @@ Clone the repository:
 
 ```bash
 git clone https://github.com/Manas-Sandhu/Playo-Clone-using-React.git
-```
-
-Navigate to the project folder:
-
-```bash
 cd Playo-Clone-using-React
 ```
 
@@ -60,7 +145,7 @@ Install dependencies:
 npm install
 ```
 
-Run the development server:
+Run the app:
 
 ```bash
 npm run dev
@@ -68,42 +153,45 @@ npm run dev
 
 ---
 
-## 🌐 Routes
+## 🌐 Routing Summary
 
-* `/` → Home
-* `/home` → Book page
-* `/play` → Play page
+| Route    | Description     |
+| -------- | --------------- |
+| `/`      | Home page       |
+| `/play`  | Play activities |
+| `/about` | FAQ / About     |
 
 ---
 
 ## 📸 Screenshots
 
-*(Add screenshots here once UI is complete)*
+> *(Add UI screenshots here for better presentation)*
 
 ---
 
-## 📌 Future Improvements
+## 🔮 Future Improvements
 
-* 🔐 Authentication (Login/Signup)
-* 📍 Location-based venue search
-* 💳 Booking & payment integration
-* 📱 Fully responsive mobile design
+* 🔐 Authentication system
+* 📍 Location-based search
+* 💳 Booking & payments
+* 📱 Mobile responsiveness
+* 🌙 Dark mode
 
 ---
 
 ## 🤝 Contributing
 
 Contributions are welcome!
-Feel free to fork this repo and submit a pull request.
+Feel free to fork and submit pull requests.
 
 ---
 
 ## 📄 License
 
-This project is for educational purposes only.
+This project is for learning and demonstration purposes.
 
 ---
 
-## 👨‍💻 Author
+## 👩‍💻 Author
 
-Developed by **Palakpreet Kaur and Manas Sandhu**
+**Palakpreet Kaur and Manas Sandhu**
