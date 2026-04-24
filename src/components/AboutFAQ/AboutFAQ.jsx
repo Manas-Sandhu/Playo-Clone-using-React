@@ -59,8 +59,10 @@ const AboutFAQ = () => {
             professional website, landing page or admin panel for your SaaS.
           </p>
           <div className="about-btns">
-            <button className="btn-primary">READ OUR STORY</button>
-            <button className="btn-outline">WE ARE HIRING!</button>
+            <a href="https://www.linkedin.com/in/manas-sandhu-0a8b212b2/" target='blank'><button className="btn-primary">READ OUR STORY</button></a>
+            <a href="https://www.linkedin.com/in/palakpreet-kaur-bhullar-6a0829228/" target='blank'> <button className="btn-outline">WE ARE HIRING!</button></a>
+           
+           
           </div>
         </div>
 
