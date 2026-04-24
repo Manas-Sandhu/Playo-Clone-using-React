@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Part3.css';
+import FilterModal from './FilterModal';
 
 const games = [
   {
@@ -142,8 +143,6 @@ const games = [
     avatars: ['https://picsum.photos/32/32?random=13'],
   },
 ];
-
-
 function GameCard({ game }) {
   return (
     <div className="game-card">
@@ -151,8 +150,7 @@ function GameCard({ game }) {
       <div className="game-card-header">
         <div className="game-tags">
           {game.sport && <span className="game-type-tag">{game.sport}</span>}
-          <span className="game-regular-tag">{game.gameType}</span>
-        </div>
+          <span className="game-regular-tag">{game.gameType}</span></div>
         {game.price && <span className="game-price">💰 {game.price}</span>}
       </div>
 
@@ -185,6 +183,8 @@ function GameCard({ game }) {
 
 
 function Part3() {
+  const [showFilter, setShowFiter]=useState(false)
+
   return (
     <section className="discover-games">
       <div className="discover-header">
@@ -213,14 +213,15 @@ function Part3() {
 
       {/* Filter Bar */}
       <div className="filter-bar">
-        <button className="filter-toggle">
+        {/* <button className="filter-toggle">
           <span>🎮</span> GameTime by Playo
           <span className="toggle-switch"></span>
-        </button>
-        <button className="filter-btn">⚙️ Filter & Sort By ▾</button>
+        </button> */}
+        <button className="filter-btn" onClick={()=>setShowFiter(!showFilter)}>⚙️ Filter & Sort By ▾</button>
         <button className="filter-btn">🏅 Sports ▾</button>
         <button className="filter-btn">📅 Date ▾</button>
-        <button className="filter-btn">💳 Pay & Join Game</button>
+        <button className="filter-btn">💳 Pay & Join Game</button> 
+        {showFilter && <FilterModal/>}
       </div>
 
       {/* Games Grid */}
