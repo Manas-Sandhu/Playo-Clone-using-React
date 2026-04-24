@@ -35,7 +35,8 @@ function Part2() {
               </div>
               <div className="venue-footer">
                 <span className="venue-rating">⭐ {venue.rating}</span>
-                <button className="book-btn">Book Now</button>
+                <a href="https://www.machaxi.com/" target='blank'><button className="book-btn">Book Now</button></a>
+               
               </div>
             </div>
           </div>
