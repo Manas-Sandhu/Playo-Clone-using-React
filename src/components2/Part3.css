@@ -134,7 +134,7 @@
 }
 
 /* Games Grid */
-.games-grid {
+.games-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
@@ -297,4 +297,81 @@
 
 .load-more-btn:hover {
   background: #27ae60;
+}
+
+/* ── CSS Variables: Light Theme (default) ─────────── */
+:root {
+  --green:            #2dc44e;
+  --green-dark:       #27ae60;
+  --green-light:      #f0faf2;
+  --white:            #ffffff;
+  --bg:               #f5f5f5;
+  --card-bg:          #ffffff;
+  --text-dark:        #1a1a1a;
+  --text-mid:         #555555;
+  --text-light:       #888888;
+  --border:           #e8e8e8;
+  --border-mid:       #e0e0e0;
+  --badge-bg:         #f5f5f5;
+  --font-main:        'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  --toggle-track:     #d4d4d4;
+  --toggle-thumb-x:   3px;
+  --filter-btn-bg:    #ffffff;
+  --shadow-card:      0 1px 8px rgba(0,0,0,0.05);
+  --shadow-card-hover:0 4px 18px rgba(0,0,0,0.10);
+}
+
+/* ── CSS Variables: Dark Theme ────────────────────── */
+.dark {
+  --white:            #1e1e1e;
+  --bg:               #121212;
+  --card-bg:          #252525;
+  --text-dark:        #f0f0f0;
+  --text-mid:         #aaaaaa;
+  --text-light:       #777777;
+  --border:           #333333;
+  --border-mid:       #2e2e2e;
+  --badge-bg:         #2e2e2e;
+  --green-light:      #1a2e1e;
+  --toggle-track:     #2dc44e;
+  --toggle-thumb-x:   27px;
+  --filter-btn-bg:    #252525;
+  --shadow-card:      0 1px 8px rgba(0,0,0,0.3);
+  --shadow-card-hover:0 4px 18px rgba(0,0,0,0.5);
+}
+
+/* ── Reset ────────────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg);
+  color: var(--text-dark);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.app {
+  width: 100%;
+  background: var(--bg);
+  min-height: 100vh;
+  transition: background 0.3s;
+}
+
+
+/* Add this to your Part3.css */
+ 
+.filter-btn--active {
+  background: #2ecc71;
+  border-color: #2ecc71;
+  color: #fff;
+}
+ 
+.filter-btn--active:hover {
+  background: #27ae60;
+  border-color: #27ae60;
+  color: #fff;
 }

@@ -4,6 +4,176 @@ import FilterModal from './Subparts/FilterModal';
 import SportsDropdown from './Subparts/SportsDropdown';
 import DateDropdown from './Subparts/DateDropdown';
 
+// const games = [
+//   {
+//     id: 1,
+//     sport: 'Badminton',
+//     type: 'Mixed Doubles',
+//     gameType: 'Regular',
+//     going: 6,
+//     host: 'Shrishti',
+//     karma: 122,
+//     date: 'Wed, 22 Apr 2026, 07:30 PM - 08:30 PM',
+//     rawDate: new Date(2026, 3, 22),
+//     startHour: 19.5,
+//     venue: 'Machaxi Active Sport... ~1.00 Kms',
+//     distanceKm: 1.0,
+//     level: 'Beginner - Professional',
+//     levels: ['Beginner', 'Intermediate', 'Professional'],
+//     price: 'INR 120',
+//     booked: true,
+//     avatars: ['https://picsum.photos/32/32?random=1', 'https://picsum.photos/32/32?random=2'],
+//   },
+//   {
+//     id: 2,
+//     sport: 'Badminton',
+//     type: 'Mixed Doubles',
+//     gameType: 'Regular',
+//     going: 2,
+//     host: 'Shrishti',
+//     karma: 122,
+//     date: 'Fri, 24 Apr 2026, 06:00 PM - 07:00 PM',
+//     rawDate: new Date(2026, 3, 24),
+//     startHour: 18,
+//     venue: 'Machaxi Active Sport... ~1.00 Kms',
+//     distanceKm: 1.0,
+//     level: 'Beginner - Professional',
+//     levels: ['Beginner', 'Intermediate', 'Professional'],
+//     booked: false,
+//     avatars: ['https://picsum.photos/32/32?random=3', 'https://picsum.photos/32/32?random=4'],
+//   },
+//   {
+//     id: 3,
+//     sport: 'Badminton',
+//     type: 'Mixed Doubles',
+//     gameType: 'Regular',
+//     going: 3,
+//     host: 'Shrishti',
+//     karma: 122,
+//     date: 'Sun, 26 Apr 2026, 05:00 PM - 06:00 PM',
+//     rawDate: new Date(2026, 3, 26),
+//     startHour: 17,
+//     venue: 'Machaxi Active Sport... ~1.00 Kms',
+//     distanceKm: 1.0,
+//     level: 'Beginner - Professional',
+//     levels: ['Beginner', 'Intermediate', 'Professional'],
+//     booked: true,
+//     avatars: ['https://picsum.photos/32/32?random=5', 'https://picsum.photos/32/32?random=6'],
+//   },
+//   {
+//     id: 4,
+//     sport: 'Badminton',
+//     type: null,
+//     gameType: 'Regular',
+//     going: 1,
+//     host: 'Rinshu',
+//     karma: 85,
+//     date: 'Sun, 26 Apr 2026, 06:00 PM - 07:00 PM',
+//     rawDate: new Date(2026, 3, 26),
+//     startHour: 18,
+//     venue: 'Machaxi Active Sport... ~1.00 Kms',
+//     distanceKm: 1.0,
+//     level: 'Amateur - Intermediate',
+//     levels: ['Amateur', 'Intermediate'],
+//     price: 'INR 300',
+//     booked: false,
+//     avatars: ['https://picsum.photos/32/32?random=7'],
+//   },
+//   {
+//     id: 5,
+//     sport: 'Football',
+//     type: null,
+//     gameType: 'Regular',
+//     going: 1,
+//     host: 'Harshith',
+//     karma: 646,
+//     date: 'Tue, 21 Apr 2026, 07:00 PM - 08:00 PM',
+//     rawDate: new Date(2026, 3, 21),
+//     startHour: 19,
+//     venue: 'Basecamp by Push Spo... ~1.41 Kms',
+//     distanceKm: 1.41,
+//     level: 'Intermediate - Professional',
+//     levels: ['Intermediate', 'Professional'],
+//     price: 'INR 1000',
+//     booked: true,
+//     avatars: ['https://picsum.photos/32/32?random=8'],
+//   },
+//   {
+//     id: 6,
+//     sport: 'Football',
+//     type: 'Doubles',
+//     gameType: 'Regular',
+//     going: '1/7',
+//     host: 'GameTime',
+//     karma: 444829,
+//     date: 'Fri, 24 Apr 2026, 06:00 PM - 07:00 PM',
+//     rawDate: new Date(2026, 3, 24),
+//     startHour: 18,
+//     venue: 'Basecamp by Push Spo... ~1.41 Kms',
+//     distanceKm: 1.41,
+//     level: 'Beginner - Intermediate',
+//     levels: ['Beginner', 'Intermediate'],
+//     booked: true,
+//     price: 'INR 149',
+//     avatars: ['https://picsum.photos/32/32?random=9'],
+//   },
+//   {
+//     id: 7,
+//     sport: 'Football',
+//     type: '9 A Side',
+//     gameType: 'Regular',
+//     going: '1/20',
+//     host: 'Thomas',
+//     karma: 126,
+//     date: 'Tue, 21 Apr 2026, 11:00 PM - 12:30 AM',
+//     rawDate: new Date(2026, 3, 21),
+//     startHour: 23,
+//     venue: 'South United Footbal... ~2.40 Kms',
+//     distanceKm: 2.4,
+//     level: 'Amateur - Professional',
+//     levels: ['Amateur', 'Intermediate', 'Professional'],
+//     booked: false,
+//     avatars: ['https://picsum.photos/32/32?random=10'],
+//   },
+//   {
+//     id: 8,
+//     sport: 'Football',
+//     type: '7 A Side',
+//     gameType: 'Regular',
+//     going: '2/6',
+//     host: 'TurfX',
+//     karma: 34062,
+//     date: 'Wed, 22 Apr 2026, 07:00 AM - 08:00 AM',
+//     rawDate: new Date(2026, 3, 22),
+//     startHour: 7,
+//     venue: 'South United Footbal... ~2.40 Kms',
+//     distanceKm: 2.4,
+//     level: 'Beginner - Professional',
+//     levels: ['Beginner', 'Intermediate', 'Professional'],
+//     booked: false,
+//     avatars: ['https://picsum.photos/32/32?random=11', 'https://picsum.photos/32/32?random=12'],
+//   },
+//   {
+//     id: 9,
+//     sport: 'Football',
+//     type: '7 A Side',
+//     gameType: 'Regular',
+//     going: 2,
+//     host: 'Varun',
+//     karma: 1717,
+//     date: 'Thu, 23 Apr 2026, 08:00 PM - 09:30 PM',
+//     rawDate: new Date(2026, 3, 23),
+//     startHour: 20,
+//     venue: 'South United Footbal... ~2.40 Kms',
+//     distanceKm: 2.4,
+//     level: 'Beginner - Professional',
+//     levels: ['Beginner', 'Intermediate', 'Professional'],
+//     booked: false,
+//     avatars: ['https://picsum.photos/32/32?random=13'],
+//   },
+// ];
+
+
 const games = [
   {
     id: 1,
@@ -376,10 +546,10 @@ const games = [
     avatars: ['https://picsum.photos/32/32?random=24'],
   }
 ];
+const PAGE_SIZE = 6;
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
-// Returns true if the game's startHour falls in the selected time slot
 function matchesTime(game, timeSlots) {
   if (timeSlots.length === 0) return true;
   const h = game.startHour;
@@ -392,18 +562,15 @@ function matchesTime(game, timeSlots) {
   });
 }
 
-// Returns true if at least one of the game's skill levels is selected
 function matchesSkill(game, skills) {
   if (skills.length === 0) return true;
   return game.levels.some(lvl => skills.includes(lvl));
 }
 
-// Returns true if game distance ≤ selected km
 function matchesDistance(game, maxKm) {
   return game.distanceKm <= maxKm;
 }
 
-// Returns true if game date matches the selected date
 function matchesDate(game, date) {
   if (!date) return true;
   const d = game.rawDate;
@@ -414,7 +581,6 @@ function matchesDate(game, date) {
   );
 }
 
-// Returns true if game sport matches selected sport
 function matchesSport(game, sport) {
   if (!sport) return true;
   return game.sport.toLowerCase() === sport.toLowerCase();
@@ -464,11 +630,13 @@ function Part3() {
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [selectedSport,   setSelectedSport]   = useState(null);
   const [selectedDate,    setSelectedDate]     = useState(null);
+  const [showAll,         setShowAll]          = useState(false);
+  const [payJoinActive,   setPayJoinActive]    = useState(false);
 
   // State coming back from FilterModal
-  const [activeSkills,   setActiveSkills]   = useState([]);   // e.g. ['Beginner', 'Amateur']
-  const [activeTimes,    setActiveTimes]     = useState([]);   // e.g. ['Evening (4 PM to 9 PM)']
-  const [activeDistance, setActiveDistance]  = useState(50);   // km, default 50 = show all
+  const [activeSkills,   setActiveSkills]   = useState([]);
+  const [activeTimes,    setActiveTimes]     = useState([]);
+  const [activeDistance, setActiveDistance]  = useState(50);
 
   // ── Handle FilterModal apply ───────────────────────
   const handleApplyFilters = ({ selectedTimes, selectedSkills, distanceRange }) => {
@@ -479,14 +647,21 @@ function Part3() {
 
   // ── Derived: filtered games ────────────────────────
   const filteredGames = useMemo(() => {
-    return games.filter(game =>
-      matchesSport(game,    selectedSport)   &&
-      matchesDate(game,     selectedDate)    &&
-      matchesTime(game,     activeTimes)     &&
-      matchesSkill(game,    activeSkills)    &&
-      matchesDistance(game, activeDistance)
-    );
-  }, [selectedSport, selectedDate, activeTimes, activeSkills, activeDistance]);
+    return games.filter(game => {
+      if (!matchesSport(game,    selectedSport))   return false;
+      if (!matchesDate(game,     selectedDate))    return false;
+      if (!matchesTime(game,     activeTimes))     return false;
+      if (!matchesSkill(game,    activeSkills))    return false;
+      if (!matchesDistance(game, activeDistance))  return false;
+      // Pay & Join: keep only cards that have a price
+      if (payJoinActive && !game.price)            return false;
+      return true;
+    });
+  }, [selectedSport, selectedDate, activeTimes, activeSkills, activeDistance, payJoinActive]);
+
+  // Reset showAll whenever filters change so the grid goes back to 9
+  const visibleGames = showAll ? filteredGames : filteredGames.slice(0, PAGE_SIZE);
+  const hasMore = !showAll && filteredGames.length > PAGE_SIZE;
 
   // ── Active filter count (for badge on button) ─────
   const filterCount =
@@ -526,7 +701,6 @@ function Part3() {
           <span className="toggle-switch"></span>
         </button>
 
-        {/* Filter & Sort By → opens FilterModal */}
         <button
           className="filter-btn"
           onClick={() => setShowFilterModal(true)}
@@ -534,19 +708,25 @@ function Part3() {
           ⚙️ Filter & Sort By{filterCount > 0 ? ` (${filterCount})` : ''} ▾
         </button>
 
-        {/* Sports dropdown */}
         <SportsDropdown selected={selectedSport} onSelect={setSelectedSport} />
-
-        {/* Date dropdown */}
         <DateDropdown selected={selectedDate} onSelect={setSelectedDate} />
 
-        <button className="filter-btn">💳 Pay & Join Game</button>
+        {/* Pay & Join toggle */}
+        <button
+          className={`filter-btn${payJoinActive ? ' filter-btn--active' : ''}`}
+          onClick={() => {
+            setPayJoinActive(prev => !prev);
+            setShowAll(false);
+          }}
+        >
+          💳 Pay &amp; Join Game{payJoinActive ? ' ✕' : ''}
+        </button>
       </div>
 
       {/* Games Grid */}
-      {filteredGames.length > 0 ? (
+      {visibleGames.length > 0 ? (
         <div className="games-grid">
-          {filteredGames.map(game => (
+          {visibleGames.map(game => (
             <GameCard key={game.id} game={game} />
           ))}
         </div>
@@ -561,6 +741,8 @@ function Part3() {
               setActiveTimes([]);
               setActiveSkills([]);
               setActiveDistance(50);
+              setPayJoinActive(false);
+              setShowAll(false);
             }}
           >
             CLEAR ALL FILTERS
@@ -568,10 +750,18 @@ function Part3() {
         </div>
       )}
 
-      {/* Load More */}
-      {filteredGames.length > 0 && (
+      {/* Load More / Show Less */}
+      {visibleGames.length > 0 && (
         <div className="load-more-wrapper">
-          <button className="load-more-btn">LOAD MORE</button>
+          {hasMore ? (
+            <button className="load-more-btn" onClick={() => setShowAll(true)}>
+              LOAD MORE ({filteredGames.length - PAGE_SIZE} more)
+            </button>
+          ) : showAll && filteredGames.length > PAGE_SIZE ? (
+            <button className="load-more-btn" onClick={() => setShowAll(false)}>
+              SHOW LESS
+            </button>
+          ) : null}
         </div>
       )}
 
