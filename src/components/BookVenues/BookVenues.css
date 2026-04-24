@@ -1,147 +1,166 @@
 .book-venues {
-  padding: 48px 40px 32px;
-  background: var(--white);
+  padding: 48px 40px;
+  background: #fff;
 }
 
-.section-header {
+.bv-header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: flex-end;
   margin-bottom: 24px;
 }
 
-.section-title {
+.bv-title {
   font-size: 24px;
-  font-weight: 800;
-  color: var(--text-dark);
-}
-
-.see-all-btn {
-  background: none;
-  border: none;
-  color: var(--green);
   font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 4px;
+}
+
+.bv-subtitle {
   font-size: 14px;
-  cursor: pointer;
-  font-family: var(--font-main);
-  letter-spacing: 0.5px;
-  transition: opacity 0.15s;
+  color: #888;
+  margin: 0;
 }
 
-.see-all-btn:hover {
-  opacity: 0.7;
+.bv-view-all {
+  font-size: 14px;
+  font-weight: 600;
+  color: #00a550;
+  text-decoration: none;
 }
 
-.venues-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-
-.venue-card {
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  background: var(--white);
-  transition: box-shadow 0.2s, transform 0.2s;
-  cursor: pointer;
-}
-
-.venue-card:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  transform: translateY(-3px);
-}
-
-.venue-img-wrap {
+.bv-carousel-wrapper {
   position: relative;
-  height: 160px;
-  overflow: hidden;
-}
-
-.venue-img-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.3s;
-}
-
-.venue-card:hover .venue-img-wrap img {
-  transform: scale(1.05);
-}
-
-.featured-badge {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 3px 10px;
-  border-radius: 4px;
-  letter-spacing: 0.5px;
-}
-
-.venue-info {
-  padding: 12px 14px 14px;
-}
-
-.venue-name-row {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  align-items: center;
   gap: 8px;
-  margin-bottom: 6px;
 }
 
-.venue-name {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text-dark);
-  line-height: 1.3;
-}
-
-.venue-rating {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--green);
-  white-space: nowrap;
-}
-
-.star {
-  color: #f5a623;
-}
-
-.venue-address {
-  font-size: 12px;
-  color: var(--text-light);
-}
-
-/* CAROUSEL CONTROLS */
-.carousel-controls {
+.bv-track {
   display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 24px;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding: 8px 4px;
+  flex: 1;
 }
 
-.carousel-btn {
-  width: 38px;
-  height: 38px;
+.bv-track::-webkit-scrollbar { display: none; }
+
+.bv-arrow {
+  background: #fff;
+  border: 1px solid #ddd;
   border-radius: 50%;
-  border: 1.5px solid var(--border);
-  background: var(--white);
-  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  font-size: 22px;
   cursor: pointer;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-mid);
-  transition: border-color 0.15s, color 0.15s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: background 0.2s;
+  z-index: 1;
 }
 
-.carousel-btn:hover {
-  border-color: var(--green);
-  color: var(--green);
+.bv-arrow:hover { background: #f0f0f0; }
+
+.bv-card {
+  min-width: 280px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  flex-shrink: 0;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
+
+.bv-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.bv-img-wrapper {
+  position: relative;
+}
+
+.bv-img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  display: block;
+}
+
+.bv-distance {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 12px;
+}
+
+.bv-info {
+  padding: 14px;
+}
+
+.bv-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 6px;
+}
+
+.bv-location {
+  font-size: 13px;
+  color: #777;
+  margin: 0 0 10px;
+}
+
+.bv-sports {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.bv-sport-tag {
+  background: #e8f5e9;
+  color: #2e7d32;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 20px;
+}
+
+.bv-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bv-rating {
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+}
+
+.bv-book-btn {
+  background: #00a550;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.bv-book-btn:hover { background: #008c44; }
