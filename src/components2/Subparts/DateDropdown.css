@@ -1,0 +1,139 @@
+/* ── Wrapper ───────────────────────────────────────── */
+.dd-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* ── Trigger active state ──────────────────────────── */
+.dd-trigger--open {
+  background: #f0faf2;
+  border-color: #2dc44e;
+  color: #2dc44e;
+}
+
+/* ── Dropdown panel ────────────────────────────────── */
+.dd-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 300px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
+  z-index: 500;
+  padding: 0 0 8px;
+  animation: dd-pop 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes dd-pop {
+  from { opacity: 0; transform: translateY(-6px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)   scale(1);    }
+}
+
+/* ── Month nav ─────────────────────────────────────── */
+.dd-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px 10px;
+}
+
+.dd-nav-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.12s;
+}
+.dd-nav-btn:hover { background: #f0f0f0; }
+
+.dd-month-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+/* ── 7-col grid shared ─────────────────────────────── */
+.dd-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  padding: 0 10px;
+}
+
+/* ── Day-of-week headers ───────────────────────────── */
+.dd-day-headers { margin-bottom: 4px; }
+
+.dd-day-header {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: #aaa;
+  padding: 4px 0;
+  letter-spacing: 0.3px;
+}
+
+/* ── Day cells ─────────────────────────────────────── */
+.dd-cells { row-gap: 4px; }
+
+.dd-cell {
+  background: none;
+  border: none;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  margin: 0 auto;
+  font-size: 13px;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.12s, color 0.12s;
+}
+.dd-cell:hover:not(.dd-cell--empty) { background: #f0f0f0; }
+
+.dd-cell--empty { cursor: default; pointer-events: none; }
+
+/* Today ring */
+.dd-cell--today {
+  border: 1.5px solid #2dc44e;
+  color: #2dc44e;
+  font-weight: 700;
+}
+
+/* Selected fill */
+.dd-cell--selected {
+  background: #2dc44e !important;
+  color: #fff !important;
+  font-weight: 700;
+  border: none;
+}
+
+/* ── Footer ────────────────────────────────────────── */
+.dd-footer {
+  text-align: center;
+  padding: 10px 0 4px;
+  border-top: 1px solid #f0f0f0;
+  margin-top: 8px;
+}
+
+.dd-today-btn {
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2dc44e;
+  cursor: pointer;
+  padding: 4px 12px;
+  border-radius: 8px;
+  transition: background 0.12s;
+}
+.dd-today-btn:hover { background: #f0faf2; }
