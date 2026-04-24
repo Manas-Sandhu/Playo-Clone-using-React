@@ -69,6 +69,7 @@ export default function FilterModal({ onClose, onApply }) {
                 {TIME_OPTIONS.map(({ label, sub }) => {
                   const value = `${label} (${sub})`;
                   const checked = selectedTimes.includes(value);
+
                   return (
                     <li key={label} className="fm-option-item">
                       <span className="fm-option-label">

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Part3.css';
-import FilterModal from './FilterModal';
+import FilterModal from './Subparts/FilterModal';
 
 const games = [
   {
