@@ -26,19 +26,7 @@ export default function Navbar({ darkMode, setDarkMode }) {
       </div>
 
       <div className="navbar-right">
-        {/* Dark mode toggle */}
-        <button
-          className="theme-toggle"
-          onClick={() => setDarkMode(d => !d)}
-          aria-label="Toggle dark mode"
-          title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-        >
-          <span className="theme-toggle-track">
-            <span className="theme-toggle-thumb">
-              {darkMode ? '🌙' : '☀️'}
-            </span>
-          </span>
-        </button>
+
 
         <button className="login-btn">👤 Login / Signup</button>
       </div>
