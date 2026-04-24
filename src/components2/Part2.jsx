@@ -11,7 +11,6 @@ const venues = [
 function Part2() {
   return (
     <section className="book-venues">
-
       <div className="book-venues-header">
         <div>
           <h2 className="section-title">Book Venues Near You</h2>
@@ -19,7 +18,6 @@ function Part2() {
         </div>
         <a href="#" className="view-all-link">View All →</a>
       </div>
-
       <div className="venues-grid">
         {venues.map(venue => (
           <div className="venue-card" key={venue.id}>

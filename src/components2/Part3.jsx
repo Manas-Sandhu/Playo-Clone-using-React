@@ -4,6 +4,8 @@ import './Part3.css';
 const games = [
   {
     id: 1,
+    sport: 'Badminton',
+    dateISO: '2026-04-22',
     type: 'Mixed Doubles',
     gameType: 'Regular',
     going: 6,
@@ -18,6 +20,8 @@ const games = [
   },
   {
     id: 2,
+    sport: 'Cricket',
+    dateISO: '2026-04-24',
     type: 'Mixed Doubles',
     gameType: 'Regular',
     going: 2,
@@ -31,6 +35,8 @@ const games = [
   },
   {
     id: 3,
+    sport: 'Badminton',
+    dateISO: '2026-04-26',
     type: 'Mixed Doubles',
     gameType: 'Regular',
     going: 3,
@@ -44,6 +50,8 @@ const games = [
   },
   {
     id: 4,
+    sport: 'Badminton',
+    dateISO: '2026-04-26',
     type: null,
     gameType: 'Regular',
     going: 1,
@@ -58,6 +66,8 @@ const games = [
   },
   {
     id: 5,
+    sport: 'Cricket',
+    dateISO: '2026-04-21',
     type: null,
     gameType: 'Regular',
     going: 1,
@@ -72,6 +82,8 @@ const games = [
   },
   {
     id: 6,
+    sport: 'Tennis',
+    dateISO: '2026-04-24',
     type: 'Doubles',
     gameType: 'Regular',
     going: '1/7',
@@ -86,6 +98,8 @@ const games = [
   },
   {
     id: 7,
+    sport: 'Football',
+    dateISO: '2026-04-21',
     type: '9 A Side',
     gameType: 'Regular',
     going: '1/20',
@@ -99,6 +113,8 @@ const games = [
   },
   {
     id: 8,
+    sport: 'Table tennis',
+    dateISO: '2026-04-22',
     type: '7 A Side',
     gameType: 'Regular',
     going: '2/6',
@@ -112,6 +128,8 @@ const games = [
   },
   {
     id: 9,
+    sport: 'Football',
+    dateISO: '2026-04-23',
     type: '7 A Side',
     gameType: 'Regular',
     going: 2,
@@ -126,14 +144,13 @@ const games = [
 ];
 
 
-
 function GameCard({ game }) {
   return (
     <div className="game-card">
 
       <div className="game-card-header">
         <div className="game-tags">
-          {game.type && <span className="game-type-tag">{game.type}</span>}
+          {game.sport && <span className="game-type-tag">{game.sport}</span>}
           <span className="game-regular-tag">{game.gameType}</span>
         </div>
         {game.price && <span className="game-price">💰 {game.price}</span>}
