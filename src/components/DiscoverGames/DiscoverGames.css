@@ -188,3 +188,12 @@
   border-color: var(--green);
   color: var(--green);
 }
+.games-grid {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding-bottom: 8px;
+}
+.games-grid::-webkit-scrollbar { display: none; }
