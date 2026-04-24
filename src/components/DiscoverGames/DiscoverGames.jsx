@@ -1,6 +1,6 @@
 import React from 'react';
 import './DiscoverGames.css';
-
+import { Link } from "react-router";
 const games = [
   {
     id: 1,
@@ -67,7 +67,7 @@ const DiscoverGames = () => {
     <section className="discover-games">
       <div className="section-header">
         <h2 className="section-title">Discover Games</h2>
-        <button className="see-all-btn">SEE ALL GAMES ›</button>
+        <Link to="/Play"><button className="see-all-btn">SEE ALL GAMES ›</button></Link>
       </div>
 
       <div className="games-grid">

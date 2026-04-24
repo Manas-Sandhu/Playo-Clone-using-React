@@ -47,14 +47,14 @@ function Part4() {
           <h3>To create a game, download Playo app</h3>
         </div>
         <div className="banner-buttons">
-          <a href="#" className="banner-store-btn">
+          <a href="https://play.google.com/store/apps/details?id=com.techmash.playo&hl=en_IN" target='blank' className="banner-store-btn">
             <span className="banner-store-icon">▶</span>
             <div className="banner-store-text">
               <span className="banner-store-sub">GET IT ON</span>
               <span className="banner-store-name">Google Play</span>
             </div>
           </a>
-          <a href="#" className="banner-store-btn">
+          <a href="https://apps.apple.com/in/app/playo-sports-community-app/id1018786950" target='blank' className="banner-store-btn">
             <span className="banner-store-icon">🍎</span>
             <div className="banner-store-text">
               <span className="banner-store-sub">Download on the</span>

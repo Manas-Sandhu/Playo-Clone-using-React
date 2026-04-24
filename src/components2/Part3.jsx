@@ -508,14 +508,14 @@ function Part3() {
         </div>
         <div className="download-cta">
           <span className="download-label">To create a game, download Playo app</span>
-          <a href="#" className="store-btn google-play">
+          <a href="https://play.google.com/store/apps/details?id=com.techmash.playo&hl=en_IN" target="blank" className="store-btn google-play">
             <span className="store-icon">▶️</span>
             <div className="store-text">
               <span className="store-sub">GET IT ON</span>
               <span className="store-name">Google Play</span>
             </div>
           </a>
-          <a href="#" className="store-btn app-store">
+          <a href="https://apps.apple.com/in/app/playo-sports-community-app/id1018786950" target='blank' className="store-btn app-store">
             <span className="store-icon">🍎</span>
             <div className="store-text">
               <span className="store-sub">Download on the</span>
