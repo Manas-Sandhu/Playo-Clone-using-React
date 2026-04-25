@@ -1,26 +1,49 @@
 import { createRoot } from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
+
 import Play from "./Play";
 import Home from "./Home";
-
-import { BrowserRouter, Route, Routes } from "react-router";
 import Layout from "./Layout";
 import AboutFAQ from "./components/AboutFAQ/AboutFAQ";
 
+import Logincard from "/Users/palakpreetkaurbhullar/Documents/Playo-Clone-using-React/loginSignup/loginSignup components/Logincard.jsx";
+import Signupcard from "/Users/palakpreetkaurbhullar/Documents/Playo-Clone-using-React/loginSignup/loginSignup components/Signupcard.jsx";
+
 function App() {
-  return (
-    <>
-      <div className="app">
-        <BrowserRouter>
-          <Routes>
-            <Route element={<Layout />}>
-              <Route path="/Play" element={<Play />}></Route>
-              <Route path="/" element={<Home />}></Route>
-              <Route path="/About" element={<AboutFAQ />}></Route>
-            </Route>
-          </Routes>
-        </BrowserRouter>
+  const [toggleAuth, setToggleAuth] = useState(false);
+
+  const [auth, setAuth] = useState(
+    localStorage.getItem("auth") === "true"
+  );
+
+  const clickHandler = () => {
+    setToggleAuth(!toggleAuth);
+  };
+
+  if (!auth) {
+    return (
+      <div>
+        {toggleAuth ? (
+          <Signupcard onClick={clickHandler} />
+        ) : (
+          <Logincard onClick={clickHandler} setAuth={setAuth} />
+        )}
       </div>
-    </>
+    );
+  }
+
+
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/Play" element={<Play />} />
+          <Route path="/About" element={<AboutFAQ />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

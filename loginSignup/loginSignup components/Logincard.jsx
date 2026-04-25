@@ -54,17 +54,28 @@ const AppleIcon = () => (
 );
 
 export default function Login(props) {
-    function loginHandler(event){
-        let email = event.target.email.value
-        let password = event.target.password.value
-        let user = JSON.parse(localStorage.getItem("user"))
-        if(email==user.email && password==user.password){
-            localStorage.setItem("auth",true)
-        }else{
-            alert("Enter Valid Credentials")
-        }
-        
+  function loginHandler(event) {
+    event.preventDefault(); // ❗ prevent reload
+
+    let email = event.target.email.value;
+    let password = event.target.password.value;
+
+    let user = JSON.parse(localStorage.getItem("user"));
+
+    if (!user) {
+      alert("No account found. Please sign up first.");
+      return;
     }
+
+    if (email === user.email && password === user.password) {
+      localStorage.setItem("auth", "true");
+
+      // 🔥 THIS IS THE KEY FIX
+      props.setAuth(true);
+    } else {
+      alert("Enter Valid Credentials");
+    }
+  }
   return (
     <div className={styles.wrapper}>
       {/* Left image panel */}

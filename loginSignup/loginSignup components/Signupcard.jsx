@@ -54,28 +54,176 @@ const AppleIcon = () => (
   </svg>
 );
 
+// export default function CreateAccount(props) {
+//   function signup(event) {
+//     event.preventDefault();
+//     let firstname = event.target.firstname.value
+//     let lastname = event.target.lastname.value
+//     let password = event.target.password.value
+//     let email = event.target.email.value
+//     if(firstname.trim()!=="" && lastname.trim()!==""){
+//         let user = {};
+//         user.firstname = firstname
+//         user.lastname = lastname
+//         user.password = password
+//         user.email = email
+//         localStorage.setItem("user",JSON.stringify(user))
+//         alert("Account Created Successfully!!!")
+//     }else{
+//         alert("Something went wrong")
+//     }
+//   }
+//   return (
+//     <div className={styles.wrapper}>
+//       {/* Left image panel */}
+//       <div className={styles.imagePanel}>
+//         <div className={styles.imagePlaceholder} />
+//         <div className={styles.slideIndicators}>
+//           <div className={`${styles.dot} ${styles.dotActive}`} />
+//           <div className={styles.dot} />
+//           <div className={styles.dot} />
+//         </div>
+//       </div>
+
+//       {/* Right form panel */}
+//       <div className={styles.formPanel}>
+//         <h1 className={styles.title}>Create an account</h1>
+//         <p className={styles.subtitle}>
+//           Already have an account?{" "}
+//           <span className={styles.loginLink} onClick={props.onClick}>
+//             Log in
+//           </span>
+//         </p>
+//         <form onSubmit={signup}>
+//           {/* First name / Last name row */}
+//           <div className={styles.row}>
+//             <input
+//               className={`${styles.input} ${styles.inputActive}`}
+//               type="text"
+//               placeholder="First Name"
+//               name="firstname"
+//               required
+//             />
+//             <input
+//               className={styles.input}
+//               type="text"
+//               placeholder="Last Name"
+//               name="lastname"
+//               required
+//             />
+//           </div>
+
+//           {/* Email */}
+//           <div className={styles.inputGroup}>
+//             <input
+//               className={styles.input}
+//               type="email"
+//               placeholder="Email"
+//               name="email"
+//               required
+//             />
+//           </div>
+
+//           {/* Password */}
+//           <div className={`${styles.inputGroup} ${styles.passwordWrapper}`}>
+//             <input
+//               className={styles.input}
+//               type="password"
+//               placeholder="Enter your password"
+//               name="password"
+//               minLength={7}
+//             />
+//             <button
+//               className={styles.eyeButton}
+//               type="button"
+//               aria-label="Toggle password visibility"
+//             >
+//               <EyeIcon />
+//             </button>
+//           </div>
+
+//           {/* Terms checkbox */}
+//           <div className={styles.checkboxRow}>
+//             <input
+//               className={styles.checkbox}
+//               type="checkbox"
+//               id="terms"
+//               defaultChecked
+//             />
+//             <label className={styles.checkboxLabel} htmlFor="terms">
+//               I agree to the{" "}
+//               <span className={styles.termsLink}>terms &amp; conditions</span>
+//             </label>
+//           </div>
+
+//           {/* Submit button */}
+//           <button
+//             className={styles.createButton}
+//             type="submit"
+//           >
+//             Create account
+//           </button>
+
+//           {/* Divider */}
+//           <div className={styles.divider}>
+//             <div className={styles.dividerLine} />
+//             <span className={styles.dividerText}>Or register with</span>
+//             <div className={styles.dividerLine} />
+//           </div>
+
+//           {/* Social buttons */}
+//           <div className={styles.socialRow}>
+//             <button className={styles.socialButton} type="button">
+//               <GoogleIcon />
+//               Google
+//             </button>
+//             <button className={styles.socialButton} type="button">
+//               <AppleIcon />
+//               Apple
+//             </button>
+//           </div>
+//         </form>
+//       </div>
+//     </div>
+//   );
+// }
+
 export default function CreateAccount(props) {
   function signup(event) {
     event.preventDefault();
-    let firstname = event.target.firstname.value
-    let lastname = event.target.lastname.value
-    let password = event.target.password.value
-    let email = event.target.email.value
-    if(firstname.trim()!=="" && lastname.trim()!==""){
-        let user = {};
-        user.firstname = firstname
-        user.lastname = lastname
-        user.password = password
-        user.email = email
-        localStorage.setItem("user",JSON.stringify(user))
-        alert("Account Created Successfully!!!")
-    }else{
-        alert("Something went wrong")
+
+    let firstname = event.target.firstname.value;
+    let lastname = event.target.lastname.value;
+    let password = event.target.password.value;
+    let email = event.target.email.value;
+
+    if (firstname.trim() !== "" && lastname.trim() !== "") {
+      let user = {
+        firstname,
+        lastname,
+        password,
+        email,
+      };
+
+      // ✅ store user
+      localStorage.setItem("user", JSON.stringify(user));
+
+      // 🔥 AUTO LOGIN (IMPORTANT)
+      localStorage.setItem("auth", "true");
+
+      // 🔥 update React state (comes from main.jsx)
+      if (props.setAuth) {
+        props.setAuth(true);
+      }
+
+      alert("Account Created Successfully!!!");
+    } else {
+      alert("Something went wrong");
     }
   }
+
   return (
     <div className={styles.wrapper}>
-      {/* Left image panel */}
       <div className={styles.imagePanel}>
         <div className={styles.imagePlaceholder} />
         <div className={styles.slideIndicators}>
@@ -85,17 +233,17 @@ export default function CreateAccount(props) {
         </div>
       </div>
 
-      {/* Right form panel */}
       <div className={styles.formPanel}>
         <h1 className={styles.title}>Create an account</h1>
+
         <p className={styles.subtitle}>
           Already have an account?{" "}
           <span className={styles.loginLink} onClick={props.onClick}>
             Log in
           </span>
         </p>
+
         <form onSubmit={signup}>
-          {/* First name / Last name row */}
           <div className={styles.row}>
             <input
               className={`${styles.input} ${styles.inputActive}`}
@@ -113,7 +261,6 @@ export default function CreateAccount(props) {
             />
           </div>
 
-          {/* Email */}
           <div className={styles.inputGroup}>
             <input
               className={styles.input}
@@ -124,7 +271,6 @@ export default function CreateAccount(props) {
             />
           </div>
 
-          {/* Password */}
           <div className={`${styles.inputGroup} ${styles.passwordWrapper}`}>
             <input
               className={styles.input}
@@ -132,17 +278,13 @@ export default function CreateAccount(props) {
               placeholder="Enter your password"
               name="password"
               minLength={7}
+              required
             />
-            <button
-              className={styles.eyeButton}
-              type="button"
-              aria-label="Toggle password visibility"
-            >
+            <button className={styles.eyeButton} type="button">
               <EyeIcon />
             </button>
           </div>
 
-          {/* Terms checkbox */}
           <div className={styles.checkboxRow}>
             <input
               className={styles.checkbox}
@@ -152,26 +294,20 @@ export default function CreateAccount(props) {
             />
             <label className={styles.checkboxLabel} htmlFor="terms">
               I agree to the{" "}
-              <span className={styles.termsLink}>terms &amp; conditions</span>
+              <span className={styles.termsLink}>terms & conditions</span>
             </label>
           </div>
 
-          {/* Submit button */}
-          <button
-            className={styles.createButton}
-            type="submit"
-          >
+          <button className={styles.createButton} type="submit">
             Create account
           </button>
 
-          {/* Divider */}
           <div className={styles.divider}>
             <div className={styles.dividerLine} />
             <span className={styles.dividerText}>Or register with</span>
             <div className={styles.dividerLine} />
           </div>
 
-          {/* Social buttons */}
           <div className={styles.socialRow}>
             <button className={styles.socialButton} type="button">
               <GoogleIcon />
