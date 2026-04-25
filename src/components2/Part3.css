@@ -437,3 +437,28 @@ body {
   max-width: 320px;
   line-height: 1.5;
 }
+.inline-clear-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.15);
+  border: none;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-left: 6px;
+  vertical-align: middle;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.inline-clear-btn:hover {
+  background: #e53935;
+  transform: scale(1.15);
+}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./GameDetail.css";
+import "./Gamedetail.css";
 
 // ── localStorage helpers ───────────────────────────────────────────────────
 
@@ -129,7 +129,7 @@ function GameDetail({ game, onBack, isJoined, onJoin, onUnjoin }) {
                     rel="noopener noreferrer"
                     className="gd-map-btn"
                   >
-                    Show In Map ↗
+                    Show In Map ↗️
                   </a>
                 </div>
 
