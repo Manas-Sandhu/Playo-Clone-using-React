@@ -1,28 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./GameDetail.css";
 
-// ── GameDetail ─────────────────────────────────────────────────────────────
-// Props:
-//   game   – your existing game object (no extra fields needed)
-//   onBack – callback to close the detail view
+// ── localStorage helpers ───────────────────────────────────────────────────
 
-function GameDetail({ game, onBack, isJoined, onJoin }) {
-  // ── Derive all missing fields from your existing data ──────────────────
+const QUERIES_KEY = (id) => `playo_queries_${id}`;
+
+function loadQueries(gameId) {
+  try {
+    const raw = localStorage.getItem(QUERIES_KEY(gameId));
+    return raw ? JSON.parse(raw) : [];
+  } catch { return []; }
+}
+
+function saveQueries(gameId, queries) {
+  try {
+    localStorage.setItem(QUERIES_KEY(gameId), JSON.stringify(queries));
+  } catch {}
+}
+
+// ── GameDetail ─────────────────────────────────────────────────────────────
+
+function GameDetail({ game, onBack, isJoined, onJoin, onUnjoin }) {
+  // Derive display fields from the game object
   const g = {
     ...game,
     title: `${game.type ? game.type + " " : ""}${game.sport} Activity`,
     venueFullAddress: game.venue,
-    hostAvatar:
-      game.avatars?.[0] ?? `https://picsum.photos/80/80?random=${game.id}`,
+    hostAvatar: game.avatars?.[0] ?? `https://picsum.photos/80/80?random=${game.id}`,
     requiredPlayers: game.going,
     personalMessage: "No additional message from the host.",
-    queries: [],
     players: [
       {
         name: game.host,
         role: "Host",
-        avatar:
-          game.avatars?.[0] ?? `https://picsum.photos/44/44?random=${game.id}`,
+        avatar: game.avatars?.[0] ?? `https://picsum.photos/44/44?random=${game.id}`,
       },
       ...(game.avatars?.slice(1).map((av, i) => ({
         name: `Player ${i + 2}`,
@@ -33,22 +44,59 @@ function GameDetail({ game, onBack, isJoined, onJoin }) {
     venuesNearby: [],
   };
 
-  // ── Local state ────────────────────────────────────────────────────────
-  const [activeTab, setActiveTab] = useState("instructions");
-  const [queryText, setQueryText] = useState("");
-  const [queries, setQueries] = useState(g.queries);
-  const [showQueryBox, setShowQueryBox] = useState(false);
+  // ── State ──────────────────────────────────────────────────────────────
+  const [activeTab, setActiveTab]           = useState("instructions");
+  const [queryText, setQueryText]           = useState("");
+  const [queries, setQueries]               = useState(() => loadQueries(game.id));
+  const [showQueryBox, setShowQueryBox]     = useState(false);
+  const [showUnjoinConfirm, setShowUnjoinConfirm] = useState(false);
 
-  const handleSendQuery = () => {
-    if (!queryText.trim()) return;
-    setQueries((prev) => [...prev, { text: queryText, author: "You" }]);
+  // Persist queries to localStorage whenever they change
+  useEffect(() => {
+    saveQueries(game.id, queries);
+  }, [game.id, queries]);
+
+  // Reload queries when a different game is opened
+  useEffect(() => {
+    setQueries(loadQueries(game.id));
     setQueryText("");
     setShowQueryBox(false);
+    setShowUnjoinConfirm(false);
+    setActiveTab("instructions");
+  }, [game.id]);
+
+  // ── Handlers ───────────────────────────────────────────────────────────
+  const handleSendQuery = () => {
+    const trimmed = queryText.trim();
+    if (!trimmed) return;
+    setQueries((prev) => [
+      ...prev,
+      {
+        id: Date.now(),
+        text: trimmed,
+        author: "You",
+        sentAt: new Date().toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" }),
+      },
+    ]);
+    setQueryText("");
+    setShowQueryBox(false);
+  };
+
+  const handleRemoveQuery = (id) => {
+    setQueries((prev) => prev.filter((q) => q.id !== id));
+  };
+
+  const handleJoin = () => onJoin(game.id);
+
+  const handleUnjoinConfirmed = () => {
+    onUnjoin(game.id);
+    setShowUnjoinConfirm(false);
   };
 
   return (
     <div className="gd-overlay" onClick={onBack}>
       <div className="gd-container" onClick={(e) => e.stopPropagation()}>
+
         {/* ── Back ── */}
         <button className="gd-back-btn" onClick={onBack}>
           ← Back to Games
@@ -57,6 +105,7 @@ function GameDetail({ game, onBack, isJoined, onJoin }) {
         <div className="gd-layout">
           {/* ══ LEFT COLUMN ══════════════════════════════════════════════ */}
           <div className="gd-left">
+
             {/* Hero Card */}
             <div className="gd-hero-card">
               <div className="gd-hero-top">
@@ -84,27 +133,16 @@ function GameDetail({ game, onBack, isJoined, onJoin }) {
                   </a>
                 </div>
 
-                <img
-                  src={g.hostAvatar}
-                  alt={g.host}
-                  className="gd-host-avatar"
-                />
+                <img src={g.hostAvatar} alt={g.host} className="gd-host-avatar" />
               </div>
 
-              {/* Tags row */}
+              {/* Tags */}
               <div className="gd-hero-tags">
-                {g.type && (
-                  <span className="gd-tag gd-tag--type">{g.type}</span>
-                )}
-                {g.gameType && (
-                  <span className="gd-tag gd-tag--regular">{g.gameType}</span>
-                )}
-                {g.price && (
-                  <span className="gd-tag gd-tag--price">💰 {g.price}</span>
-                )}
-                {g.booked && (
-                  <span className="gd-tag gd-tag--booked">BOOKED</span>
-                )}
+                {g.type     && <span className="gd-tag gd-tag--type">{g.type}</span>}
+                {g.gameType && <span className="gd-tag gd-tag--regular">{g.gameType}</span>}
+                {g.price    && <span className="gd-tag gd-tag--price">💰 {g.price}</span>}
+                {g.booked   && <span className="gd-tag gd-tag--booked">BOOKED</span>}
+                {isJoined   && <span className="gd-tag gd-tag--joined">✅ JOINED</span>}
               </div>
             </div>
 
@@ -141,17 +179,13 @@ function GameDetail({ game, onBack, isJoined, onJoin }) {
                   </div>
                   <div className="gd-stat">
                     <span className="gd-stat-icon">📏</span>
-                    <span className="gd-stat-label">
-                      {g.distanceKm} km away
-                    </span>
+                    <span className="gd-stat-label">{g.distanceKm} km away</span>
                   </div>
                 </div>
                 <div className="gd-divider" />
                 <div className="gd-personal-msg">
                   <span className="gd-pm-label">
-                    Personal Message
-                    <br />
-                    by the host
+                    Personal Message<br />by the host
                   </span>
                   <p className="gd-pm-text">{g.personalMessage}</p>
                 </div>
@@ -159,18 +193,30 @@ function GameDetail({ game, onBack, isJoined, onJoin }) {
             ) : (
               /* Tab: Queries */
               <div className="gd-queries-panel">
-                {queries.length === 0 && (
-                  <p className="gd-no-queries">
-                    No queries yet. Be the first to ask!
-                  </p>
+                {queries.length === 0 && !showQueryBox && (
+                  <p className="gd-no-queries">No queries yet. Be the first to ask!</p>
                 )}
-                {queries.map((q, i) => (
-                  <div key={i} className="gd-query-item">
+
+                {/* Saved queries with remove button */}
+                {queries.map((q) => (
+                  <div key={q.id} className="gd-query-item">
                     <span className="gd-query-author">{q.author}:</span>
-                    <span className="gd-query-text">{q.text}</span>
+                    <span className="gd-query-text-content">{q.text}</span>
+                    {q.sentAt && (
+                      <span className="gd-query-time">{q.sentAt}</span>
+                    )}
+                    <button
+                      className="gd-query-remove"
+                      onClick={() => handleRemoveQuery(q.id)}
+                      title="Remove query"
+                      aria-label="Remove this query"
+                    >
+                      ✕
+                    </button>
                   </div>
                 ))}
 
+                {/* Compose box */}
                 {showQueryBox && (
                   <div className="gd-query-box">
                     <textarea
@@ -178,18 +224,26 @@ function GameDetail({ game, onBack, isJoined, onJoin }) {
                       placeholder="Type your query..."
                       value={queryText}
                       onChange={(e) => setQueryText(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" && !e.shiftKey) {
+                          e.preventDefault();
+                          handleSendQuery();
+                        }
+                      }}
                       rows={3}
+                      autoFocus
                     />
                     <div className="gd-query-actions">
                       <button
                         className="gd-query-cancel"
-                        onClick={() => setShowQueryBox(false)}
+                        onClick={() => { setShowQueryBox(false); setQueryText(""); }}
                       >
                         Cancel
                       </button>
                       <button
                         className="gd-query-send"
                         onClick={handleSendQuery}
+                        disabled={!queryText.trim()}
                       >
                         Send
                       </button>
@@ -199,12 +253,10 @@ function GameDetail({ game, onBack, isJoined, onJoin }) {
               </div>
             )}
 
-            {/* Similar Games */}
+            {/* Similar Games footer */}
             <div className="gd-similar-header">
               <h3 className="gd-similar-title">Similar Games</h3>
-              <button className="gd-see-all" onClick={onBack}>
-                SEE ALL GAMES ›
-              </button>
+              <button className="gd-see-all" onClick={onBack}>SEE ALL GAMES ›</button>
             </div>
           </div>
 
@@ -217,11 +269,7 @@ function GameDetail({ game, onBack, isJoined, onJoin }) {
                 {g.players.map((p, i) => (
                   <div key={i} className="gd-player-row">
                     {p.avatar ? (
-                      <img
-                        src={p.avatar}
-                        alt={p.name}
-                        className="gd-player-avatar"
-                      />
+                      <img src={p.avatar} alt={p.name} className="gd-player-avatar" />
                     ) : (
                       <div className="gd-player-avatar gd-player-avatar--placeholder">
                         {p.name.charAt(0).toUpperCase()}
@@ -236,23 +284,17 @@ function GameDetail({ game, onBack, isJoined, onJoin }) {
               </div>
             </div>
 
-            {/* Venues Nearby — only renders if data exists */}
+            {/* Venues Nearby */}
             {g.venuesNearby.length > 0 && (
               <div className="gd-panel">
                 <h3 className="gd-panel-title">Venues Nearby</h3>
                 <div className="gd-venues-list">
                   {g.venuesNearby.map((v, i) => (
                     <div key={i} className="gd-venue-row">
-                      <img
-                        src={v.image}
-                        alt={v.name}
-                        className="gd-venue-img"
-                      />
+                      <img src={v.image} alt={v.name} className="gd-venue-img" />
                       <div>
                         <div className="gd-venue-name">{v.name}</div>
-                        <div className="gd-venue-dist">
-                          ~ {v.distanceKm} km away
-                        </div>
+                        <div className="gd-venue-dist">~ {v.distanceKm} km away</div>
                       </div>
                     </div>
                   ))}
@@ -274,14 +316,40 @@ function GameDetail({ game, onBack, isJoined, onJoin }) {
           >
             SEND QUERY
           </button>
-          <button
-            className={`gd-join-btn${isJoined ? " gd-join-btn--joined" : ""}`}
-            onClick={() => onJoin(game.id)}
-            disabled={isJoined}
-          >
-            {isJoined ? "✓ JOINED" : "JOIN GAME"}
-          </button>
+
+          {isJoined ? (
+            /* ── Joined state: show status + unjoin flow ── */
+            <div className="gd-joined-actions">
+              <span className="gd-joined-label">✅ You're in!</span>
+              {!showUnjoinConfirm ? (
+                <button
+                  className="gd-unjoin-btn"
+                  onClick={() => setShowUnjoinConfirm(true)}
+                >
+                  Leave Game
+                </button>
+              ) : (
+                <div className="gd-unjoin-confirm">
+                  <span className="gd-unjoin-confirm-text">Sure?</span>
+                  <button className="gd-unjoin-confirm-yes" onClick={handleUnjoinConfirmed}>
+                    Yes, Leave
+                  </button>
+                  <button
+                    className="gd-unjoin-confirm-no"
+                    onClick={() => setShowUnjoinConfirm(false)}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <button className="gd-join-btn" onClick={handleJoin}>
+              {game.price ? `JOIN & PAY ${game.price}` : "JOIN GAME"}
+            </button>
+          )}
         </div>
+
       </div>
     </div>
   );

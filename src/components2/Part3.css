@@ -333,3 +333,107 @@ body {
   border-color: #27ae60;
   color: #fff;
 }
+
+/* ════════════════════════════════════════════════════════════════════════
+   Part3 additions — paste these at the BOTTOM of your Part3.css
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── Active filter pill ─────────────────────────────────────────────────
+   Shown instead of a button/dropdown when that filter is selected.
+   ─────────────────────────────────────────────────────────────────────── */
+.active-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px 6px 14px;
+  border-radius: 999px;
+  background: #e8f5e9;
+  border: 1.5px solid #43a047;
+  color: #2e7d32;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: default;
+  transition: background 0.15s;
+}
+
+.active-filter-pill:hover {
+  background: #c8e6c9;
+}
+
+/* The ✕ circle inside the pill */
+.active-filter-pill__clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #43a047;
+  border: none;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.active-filter-pill__clear:hover {
+  background: #c62828;
+  transform: scale(1.2);
+}
+
+/* ── Clear All Filters button ───────────────────────────────────────────
+   Sits right after the Joined button in the filter bar.
+   ─────────────────────────────────────────────────────────────────────── */
+.filter-btn--clear-all {
+  background: #fff8e1;
+  border: 1.5px solid #ffa000 !important;
+  color: #e65100;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.filter-btn--clear-all:hover {
+  background: #ffe0b2;
+  color: #bf360c;
+  border-color: #e65100 !important;
+}
+
+/* ── No-results state ───────────────────────────────────────────────────
+   Replaces the old "😕 No games match" + button block.
+   ─────────────────────────────────────────────────────────────────────── */
+.no-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 24px;
+  gap: 8px;
+  text-align: center;
+}
+
+.no-results__emoji {
+  font-size: 48px;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.no-results__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+}
+
+.no-results__sub {
+  font-size: 14px;
+  color: #888;
+  margin: 0;
+  max-width: 320px;
+  line-height: 1.5;
+}

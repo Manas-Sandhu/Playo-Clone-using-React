@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import "./Part3.css";
 import FilterModal from "./Subparts/FilterModal";
 import SportsDropdown from "./Subparts/SportsDropdown";
@@ -389,6 +389,7 @@ const games = [
     avatars: ["https://picsum.photos/32/32?random=24"],
   },
 ];
+
 const PAGE_SIZE = 6;
 
 // ── Helpers ────────────────────────────────────────────────────────────────
@@ -431,7 +432,7 @@ function matchesSport(game, sport) {
 
 // ── GameCard ───────────────────────────────────────────────────────────────
 
-function GameCard({ game, onClick }) {
+function GameCard({ game, isJoined, onClick }) {
   return (
     <div className="game-card" onClick={onClick} style={{ cursor: "pointer" }}>
       <div className="game-card-header">
@@ -460,7 +461,14 @@ function GameCard({ game, onClick }) {
 
       <div className="game-card-footer">
         <span className="game-level-badge">🎯 {game.level}</span>
-        {game.booked && <span className="booked-badge">BOOKED</span>}
+        <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
+          {isJoined && (
+            <span className="booked-badge" style={{ background: "#2e7d32" }}>
+              ✅ JOINED
+            </span>
+          )}
+          {game.booked && <span className="booked-badge">BOOKED</span>}
+        </div>
       </div>
     </div>
   );
@@ -468,21 +476,87 @@ function GameCard({ game, onClick }) {
 
 // ── Part3 ──────────────────────────────────────────────────────────────────
 
+// ── localStorage helpers ───────────────────────────────────────────────────
+const LS_KEY = "playo_filters_v1";
+
+function loadFilters() {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (!raw) return null;
+    const saved = JSON.parse(raw);
+    // rawDate was serialised as ISO string — restore to Date object
+    if (saved.selectedDate) saved.selectedDate = new Date(saved.selectedDate);
+    // joinedGames was serialised as array — restore to Set
+    if (Array.isArray(saved.joinedGames))
+      saved.joinedGames = new Set(saved.joinedGames);
+    return saved;
+  } catch {
+    return null;
+  }
+}
+
+function saveFilters(state) {
+  try {
+    const toSave = {
+      ...state,
+      // Date → ISO string so JSON.stringify keeps it
+      selectedDate: state.selectedDate ? state.selectedDate.toISOString() : null,
+      // Set → array
+      joinedGames: [...state.joinedGames],
+    };
+    localStorage.setItem(LS_KEY, JSON.stringify(toSave));
+  } catch {
+    // storage quota or private-mode — silently skip
+  }
+}
+
+// ── Part3 ──────────────────────────────────────────────────────────────────
+
 function Part3() {
+  // ── Seed state from localStorage on first render ──────────────────────────
+  const saved = loadFilters();
+
   // ── Filter state ──────────────────────────────────
   const [showFilterModal, setShowFilterModal] = useState(false);
-  const [selectedSport, setSelectedSport] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [showAll, setShowAll] = useState(false);
-  const [payJoinActive, setPayJoinActive] = useState(false);
-  const [selectedGame, setSelectedGame] = useState(null);
-  const [joinedGames, setJoinedGames] = useState(new Set());
-  const [joinedActive, setJoinedActive] = useState(false);
+  const [selectedSport, setSelectedSport]     = useState(saved?.selectedSport   ?? null);
+  const [selectedDate,  setSelectedDate]       = useState(saved?.selectedDate    ?? null);
+  const [showAll,       setShowAll]            = useState(false);
+  const [payJoinActive, setPayJoinActive]      = useState(saved?.payJoinActive   ?? false);
+  const [selectedGame,  setSelectedGame]       = useState(null);
+  const [joinedGames,   setJoinedGames]        = useState(saved?.joinedGames     ?? new Set());
+  const [joinedActive,  setJoinedActive]       = useState(saved?.joinedActive    ?? false);
 
   // State coming back from FilterModal
-  const [activeSkills, setActiveSkills] = useState([]);
-  const [activeTimes, setActiveTimes] = useState([]);
-  const [activeDistance, setActiveDistance] = useState(50);
+  const [activeSkills,   setActiveSkills]  = useState(saved?.activeSkills   ?? []);
+  const [activeTimes,    setActiveTimes]   = useState(saved?.activeTimes    ?? []);
+  const [activeDistance, setActiveDistance]= useState(saved?.activeDistance ?? 50);
+
+  // ── Persist filters to localStorage whenever they change ──────────────────
+  useEffect(() => {
+    saveFilters({
+      selectedSport,
+      selectedDate,
+      payJoinActive,
+      joinedGames,
+      joinedActive,
+      activeSkills,
+      activeTimes,
+      activeDistance,
+    });
+  }, [selectedSport, selectedDate, payJoinActive, joinedGames, joinedActive,
+      activeSkills, activeTimes, activeDistance]);
+
+  // ── Helpers ───────────────────────────────────────
+  const clearAllFilters = () => {
+    setSelectedSport(null);
+    setSelectedDate(null);
+    setActiveTimes([]);
+    setActiveSkills([]);
+    setActiveDistance(50);
+    setPayJoinActive(false);
+    setJoinedActive(false);
+    setShowAll(false);
+  };
 
   // ── Handle FilterModal apply ───────────────────────
   const handleApplyFilters = ({
@@ -503,7 +577,6 @@ function Part3() {
       if (!matchesTime(game, activeTimes)) return false;
       if (!matchesSkill(game, activeSkills)) return false;
       if (!matchesDistance(game, activeDistance)) return false;
-      // Pay & Join: keep only cards that have a price
       if (payJoinActive && !game.price) return false;
       if (joinedActive && !joinedGames.has(game.id)) return false;
       return true;
@@ -516,16 +589,15 @@ function Part3() {
     activeDistance,
     payJoinActive,
     joinedGames,
-    joinedActive
+    joinedActive,
   ]);
 
-  // Reset showAll whenever filters change so the grid goes back to 9
   const visibleGames = showAll
     ? filteredGames
     : filteredGames.slice(0, PAGE_SIZE);
   const hasMore = !showAll && filteredGames.length > PAGE_SIZE;
 
-  // ── Active filter count (for badge on button) ─────
+  // ── Active filter count (for badge on Filter & Sort button) ──────────────
   const filterCount =
     activeTimes.length + activeSkills.length + (activeDistance < 50 ? 1 : 0);
 
@@ -564,33 +636,85 @@ function Part3() {
         </div>
       </div>
 
-      {/* Filter Bar */}
+      {/* ── Filter Bar ── */}
       <div className="filter-bar">
+
+        {/* Filter & Sort button — shows modal filter count badge */}
         <button className="filter-btn" onClick={() => setShowFilterModal(true)}>
           ⚙️ Filter & Sort By{filterCount > 0 ? ` (${filterCount})` : ""} ▾
         </button>
 
-        <SportsDropdown selected={selectedSport} onSelect={setSelectedSport} />
-        <DateDropdown selected={selectedDate} onSelect={setSelectedDate} />
+        {/* Sport filter — always shows dropdown; ✕ appears when a sport is selected */}
+        <div className="filter-with-clear">
+          <SportsDropdown
+            selected={selectedSport}
+            onSelect={(val) => { setSelectedSport(val); setShowAll(false); }}
+          />
+          {selectedSport && (
+            <button
+              className="inline-clear-btn"
+              onClick={() => { setSelectedSport(null); setShowAll(false); }}
+              title="Clear sport filter"
+            >✕</button>
+          )}
+        </div>
 
-        {/* Pay & Join toggle */}
+        {/* Date filter — always shows dropdown; ✕ appears when a date is selected */}
+        <div className="filter-with-clear">
+          <DateDropdown
+            selected={selectedDate}
+            onSelect={(val) => { setSelectedDate(val); setShowAll(false); }}
+          />
+          {selectedDate && (
+            <button
+              className="inline-clear-btn"
+              onClick={() => { setSelectedDate(null); setShowAll(false); }}
+              title="Clear date filter"
+            >✕</button>
+          )}
+        </div>
+
+        {/* Pay & Join toggle — keeps its own button styling; ✕ appears when active */}
+        <div className="filter-with-clear">
+          <button
+            className={`filter-btn${payJoinActive ? " filter-btn--active" : ""}`}
+            onClick={() => { setPayJoinActive((p) => !p); setShowAll(false); }}
+          >
+            💳 Pay &amp; Join Game
+          </button>
+          {payJoinActive && (
+            <button
+              className="inline-clear-btn"
+              onClick={() => { setPayJoinActive(false); setShowAll(false); }}
+              title="Clear Pay & Join filter"
+            >✕</button>
+          )}
+        </div>
+
+        {/* Joined toggle — keeps its own button styling; ✕ appears when active */}
+        <div className="filter-with-clear">
+          <button
+            className={`filter-btn${joinedActive ? " filter-btn--active" : ""}`}
+            onClick={() => { setJoinedActive((p) => !p); setShowAll(false); }}
+          >
+            ✅ Joined
+          </button>
+          {joinedActive && (
+            <button
+              className="inline-clear-btn"
+              onClick={() => { setJoinedActive(false); setShowAll(false); }}
+              title="Clear Joined filter"
+            >✕</button>
+          )}
+        </div>
+
+        {/* ── Clear All Filters — always visible, right next to Joined ── */}
         <button
-          className={`filter-btn${payJoinActive ? " filter-btn--active" : ""}`}
-          onClick={() => {
-            setPayJoinActive((prev) => !prev);
-            setShowAll(false);
-          }}
+          className="filter-btn filter-btn--clear-all"
+          onClick={clearAllFilters}
+          title="Clear all filters"
         >
-          💳 Pay &amp; Join Game{payJoinActive ? " ✕" : ""}
-        </button>
-        <button
-          className={`filter-btn${joinedActive ? " filter-btn--active" : ""}`}
-          onClick={() => {
-            setJoinedActive((prev) => !prev);
-            setShowAll(false);
-          }}
-        >
-          ✅ Joined{joinedActive ? " ✕" : ""}
+          🗑️ Clear All Filters
         </button>
       </div>
 
@@ -601,28 +725,16 @@ function Part3() {
             <GameCard
               key={game.id}
               game={game}
+              isJoined={joinedGames.has(game.id)}
               onClick={() => setSelectedGame(game)}
             />
           ))}
         </div>
       ) : (
         <div className="no-results">
-          <p>😕 No games match your filters.</p>
-          <button
-            className="load-more-btn"
-            onClick={() => {
-              setSelectedSport(null);
-              setSelectedDate(null);
-              setActiveTimes([]);
-              setActiveSkills([]);
-              setActiveDistance(50);
-              setPayJoinActive(false);
-              setShowAll(false);
-              setJoinedActive(false);
-            }}
-          >
-            CLEAR ALL FILTERS
-          </button>
+          <span className="no-results__emoji">🏟️</span>
+          <p className="no-results__title">No matches found</p>
+          <p className="no-results__sub">Try adjusting or clearing your filters to see more games.</p>
         </div>
       )}
 
@@ -648,6 +760,7 @@ function Part3() {
           onApply={handleApplyFilters}
         />
       )}
+
       {/* Game Detail Modal */}
       {selectedGame && (
         <GameDetail
@@ -655,6 +768,13 @@ function Part3() {
           onBack={() => setSelectedGame(null)}
           isJoined={joinedGames.has(selectedGame.id)}
           onJoin={(id) => setJoinedGames((prev) => new Set([...prev, id]))}
+          onUnjoin={(id) =>
+            setJoinedGames((prev) => {
+              const next = new Set(prev);
+              next.delete(id);
+              return next;
+            })
+          }
         />
       )}
     </section>

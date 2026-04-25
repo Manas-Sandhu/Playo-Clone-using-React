@@ -13,7 +13,8 @@ const Card = ({
   venue,           // e.g. "Machaxi Active Sport..."
   distance,        // e.g. "~1.00 Kms"
   skillLevel,      // e.g. "Beginner - Professional"
-  isBooked,        // boolean
+  isBooked,        // boolean — host has confirmed slot
+  isJoined,        // boolean — current user has joined this game
   onClick,         // click handler
 }) => {
   return (
@@ -60,12 +61,15 @@ const Card = ({
         {venue} &nbsp;<span className="play-card__distance">{distance}</span>
       </p>
 
-      {/* Bottom Row: skill level + booked badge */}
+      {/* Bottom Row: skill level + booked/joined badges */}
       <div className="play-card__bottom">
         <span className="play-card__skill">
           <span className="play-card__skill-icon">🎯</span> {skillLevel}
         </span>
-        {isBooked && <span className="play-card__booked">BOOKED</span>}
+        <div className="play-card__badges">
+          {isJoined && <span className="play-card__joined-badge">✅ JOINED</span>}
+          {isBooked && <span className="play-card__booked">BOOKED</span>}
+        </div>
       </div>
     </div>
   );
