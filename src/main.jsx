@@ -35,7 +35,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Layout />}>
+        <Route element={<Layout setAuth={setAuth} setToggleAuth={setToggleAuth} />}>
           <Route path="/" element={<Home />} />
           <Route path="/Play" element={<Play />} />
           <Route path="/About" element={<AboutFAQ />} />

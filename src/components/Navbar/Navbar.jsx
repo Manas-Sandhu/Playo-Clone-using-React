@@ -1,7 +1,20 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
-export default function Navbar({ darkMode, setDarkMode }) {
+export default function Navbar({ setAuth, setToggleAuth }) {
+  const handleLogout = () => {
+    // ❗ DO NOT remove user
+    localStorage.setItem("auth", "false");
+
+    // update state
+    setAuth(false);
+
+    // force Login page (not signup)
+    if (setToggleAuth) {
+      setToggleAuth(false);
+    }
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-logo">
@@ -14,21 +27,17 @@ export default function Navbar({ darkMode, setDarkMode }) {
 
       <div className="navbar-center">
         <Link to="/Play">
-          <button className="nav-btn">
-            <span className="nav-icon">🏃</span> Play
-          </button>
+          <button className="nav-btn">🏃 Play</button>
         </Link>
         <Link to="/About">
-          <button className="nav-btn">
-            <span className="nav-icon">📅</span> About
-          </button>
+          <button className="nav-btn">📅 About</button>
         </Link>
       </div>
 
       <div className="navbar-right">
-
-
-        <button className="login-btn">👤 Login / Signup</button>
+        <button className="login-btn" onClick={handleLogout}>
+          👤 Logout →
+        </button>
       </div>
     </nav>
   );
