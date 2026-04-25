@@ -1,0 +1,539 @@
+/* ── GameDetail.css ──────────────────────────────────────────────────── */
+
+/* Overlay – dims background, scrollable */
+.gd-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 24px 16px 120px;
+}
+
+/* Main container */
+.gd-container {
+  background: #f4f4f4;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 1100px;
+  padding: 24px;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  animation: gd-slide-up 0.25s ease;
+}
+
+@keyframes gd-slide-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Back button */
+.gd-back-btn {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.15s;
+}
+.gd-back-btn:hover { color: #1a1a1a; }
+
+/* Two-column layout */
+.gd-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 20px;
+  align-items: start;
+}
+
+/* ── LEFT COLUMN ───────────────────────────────────────────────────────── */
+
+/* Hero Card */
+.gd-hero-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.gd-hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.gd-hero-info { flex: 1; }
+
+.gd-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 4px;
+}
+
+.gd-hosted-by {
+  font-size: 13px;
+  color: #888;
+  margin: 0 0 20px;
+}
+
+.gd-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.gd-meta-icon { font-size: 18px; }
+
+.gd-meta-bold {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.gd-map-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 8px 18px;
+  border: 1.5px solid #1a1a1a;
+  border-radius: 8px;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a1a;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.gd-map-btn:hover { background: #1a1a1a; color: #fff; }
+
+.gd-host-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 3px solid #eee;
+}
+
+/* Tags row inside hero */
+.gd-hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.gd-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.gd-tag--type    { background: #f0f0f0; color: #333; }
+.gd-tag--regular { background: #f0f0f0; color: #555; }
+.gd-tag--price   { background: #fefce8; color: #854d0e; }
+.gd-tag--booked  { background: #22c55e; color: #fff; }
+
+/* ── Tabs ──────────────────────────────────────────────────────────────── */
+
+.gd-tabs {
+  display: flex;
+}
+
+.gd-tab {
+  background: none;
+  border: none;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #999;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.15s;
+}
+
+.gd-tab--active {
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+.gd-tab--active::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: #1a1a1a;
+  border-radius: 2px 2px 0 0;
+}
+
+.gd-tab-divider {
+  height: 1px;
+  background: #e5e5e5;
+  margin-bottom: 20px;
+}
+
+/* ── Instructions Tab ──────────────────────────────────────────────────── */
+
+.gd-instructions {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.gd-stats-row {
+  display: flex;
+  gap: 36px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.gd-stat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.gd-stat-icon { font-size: 24px; }
+
+.gd-stat-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.gd-divider {
+  height: 1px;
+  background: #eee;
+  margin: 0 0 20px;
+}
+
+.gd-personal-msg {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.gd-pm-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a1a1a;
+  min-width: 140px;
+  line-height: 1.5;
+  flex-shrink: 0;
+}
+
+.gd-pm-text {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ── Queries Tab ───────────────────────────────────────────────────────── */
+
+.gd-queries-panel {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  min-height: 100px;
+}
+
+.gd-no-queries {
+  color: #bbb;
+  font-size: 14px;
+  text-align: center;
+  padding: 24px 0;
+}
+
+.gd-query-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
+  color: #444;
+  display: flex;
+  gap: 8px;
+}
+
+.gd-query-author {
+  font-weight: 700;
+  color: #1a1a1a;
+  flex-shrink: 0;
+}
+
+.gd-query-box {
+  margin-top: 16px;
+}
+
+.gd-query-input {
+  width: 100%;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  resize: none;
+  outline: none;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+.gd-query-input:focus { border-color: #22c55e; }
+
+.gd-query-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.gd-query-cancel {
+  padding: 8px 18px;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  background: none;
+  font-size: 13px;
+  cursor: pointer;
+  color: #555;
+  transition: background 0.15s;
+}
+.gd-query-cancel:hover { background: #f5f5f5; }
+
+.gd-query-send {
+  padding: 8px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #22c55e;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.gd-query-send:hover { background: #16a34a; }
+
+/* ── Similar Games header ──────────────────────────────────────────────── */
+
+.gd-similar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.gd-similar-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.gd-see-all {
+  background: none;
+  border: none;
+  color: #22c55e;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+}
+
+/* ── RIGHT COLUMN ──────────────────────────────────────────────────────── */
+
+.gd-panel {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.gd-panel-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 16px;
+}
+
+/* Players */
+.gd-players-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.gd-player-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.gd-player-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.gd-player-avatar--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  background: #555;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+}
+
+.gd-player-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.gd-player-role {
+  font-size: 12px;
+  color: #888;
+  margin-top: 1px;
+}
+
+/* Venues */
+.gd-venues-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.gd-venue-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.gd-venue-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: #eee;
+}
+
+.gd-venue-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.3;
+}
+
+.gd-venue-dist {
+  font-size: 12px;
+  color: #888;
+  margin-top: 2px;
+}
+
+.gd-see-all-venues {
+  background: none;
+  border: none;
+  color: #22c55e;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  padding: 0;
+}
+
+/* ── Sticky Footer CTA ─────────────────────────────────────────────────── */
+
+.gd-footer-cta {
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 24px;
+  margin: 24px -24px -24px;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.06);
+}
+
+.gd-send-query-btn {
+  padding: 12px 28px;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  color: #333;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: background 0.15s, border-color 0.15s;
+}
+.gd-send-query-btn:hover { background: #f5f5f5; border-color: #aaa; }
+
+.gd-join-btn {
+  padding: 12px 36px;
+  border: none;
+  border-radius: 8px;
+  background: #22c55e;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  letter-spacing: 0.8px;
+  transition: background 0.15s, transform 0.1s;
+}
+.gd-join-btn:hover:not(:disabled) { background: #16a34a; transform: scale(1.02); }
+.gd-join-btn--joined { background: #16a34a; cursor: default; }
+.gd-join-btn:disabled { cursor: default; }
+
+/* ── Responsive ────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .gd-layout {
+    grid-template-columns: 1fr;
+  }
+  .gd-overlay {
+    padding: 12px 8px 100px;
+  }
+  .gd-container {
+    padding: 16px;
+    border-radius: 12px;
+  }
+  .gd-personal-msg {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .gd-pm-label { min-width: unset; }
+  .gd-stats-row { gap: 20px; }
+  .gd-footer-cta { margin: 16px -16px -16px; padding: 12px 16px; }
+}

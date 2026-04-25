@@ -3,6 +3,7 @@ import './Part3.css';
 import FilterModal from './Subparts/FilterModal';
 import SportsDropdown from './Subparts/SportsDropdown';
 import DateDropdown from './Subparts/DateDropdown';
+import GameDetail from './Subparts/Gamedetail';
 
 
 const games = [
@@ -419,9 +420,9 @@ function matchesSport(game, sport) {
 
 // ── GameCard ───────────────────────────────────────────────────────────────
 
-function GameCard({ game }) {
+function GameCard({ game, onClick }) {
   return (
-    <div className="game-card">
+    <div className="game-card" onClick={onClick} style={{ cursor: 'pointer' }}>
       <div className="game-card-header">
         <div className="game-tags">
           {game.type && <span className="game-type-tag">{game.type}</span>}
@@ -463,6 +464,7 @@ function Part3() {
   const [selectedDate,    setSelectedDate]     = useState(null);
   const [showAll,         setShowAll]          = useState(false);
   const [payJoinActive,   setPayJoinActive]    = useState(false);
+  const [selectedGame, setSelectedGame] = useState(null);
 
   // State coming back from FilterModal
   const [activeSkills,   setActiveSkills]   = useState([]);
@@ -553,7 +555,7 @@ function Part3() {
       {visibleGames.length > 0 ? (
         <div className="games-grid">
           {visibleGames.map(game => (
-            <GameCard key={game.id} game={game} />
+            <GameCard key={game.id} game={game} onClick={() => setSelectedGame(game)}/>
           ))}
         </div>
       ) : (
@@ -596,6 +598,13 @@ function Part3() {
         <FilterModal
           onClose={() => setShowFilterModal(false)}
           onApply={handleApplyFilters}
+        />
+      )}
+       {/* Game Detail Modal */}
+      {selectedGame && (
+        <GameDetail
+          game={selectedGame}
+          onBack={() => setSelectedGame(null)}
         />
       )}
     </section>
