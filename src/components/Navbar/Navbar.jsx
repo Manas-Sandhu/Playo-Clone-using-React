@@ -1,24 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
 
 export default function Navbar({ setAuth, setToggleAuth }) {
+  const location = useLocation();
+
   const handleLogout = () => {
-    // ❗ DO NOT remove user
     localStorage.setItem("auth", "false");
-
-    // update state
     setAuth(false);
-
-    // force Login page (not signup)
-    if (setToggleAuth) {
-      setToggleAuth(false);
-    }
+    if (setToggleAuth) setToggleAuth(false);
   };
 
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <Link to="/">
+        <Link to="/" style={{ textDecoration: "none" }}>
           <span className="logo-text">
             PLAY<span className="logo-o">O</span>
           </span>
@@ -26,11 +21,20 @@ export default function Navbar({ setAuth, setToggleAuth }) {
       </div>
 
       <div className="navbar-center">
-        <Link to="/Play">
-          <button className="nav-btn">🏃 Play</button>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <button className={`nav-btn ${location.pathname === "/" ? "nav-btn--active" : ""}`}>
+            🏠 Home
+          </button>
         </Link>
-        <Link to="/About">
-          <button className="nav-btn">📅 About</button>
+        <Link to="/Play" style={{ textDecoration: "none" }}>
+          <button className={`nav-btn ${location.pathname === "/Play" ? "nav-btn--active" : ""}`}>
+            🏃 Play
+          </button>
+        </Link>
+        <Link to="/About" style={{ textDecoration: "none" }}>
+          <button className={`nav-btn ${location.pathname === "/About" ? "nav-btn--active" : ""}`}>
+            📅 About
+          </button>
         </Link>
       </div>
 

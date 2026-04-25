@@ -11,7 +11,7 @@ function Home() {
   return (
     <div className="app">
       <HeroSection />
-      <Part2/>
+      <BookVenues></BookVenues>
       <DiscoverGames />
       <PopularSports />
       <AboutFAQ />

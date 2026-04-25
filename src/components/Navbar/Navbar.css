@@ -1,4 +1,4 @@
-/* NAVBAR */
+/* ── Reset ─────────────────────────────────────────── */
 .navbar {
   display: flex;
   align-items: center;
@@ -11,37 +11,46 @@
   z-index: 200;
   transition: background 0.3s, border-color 0.3s;
 }
+
+/* ── Logo ─────────────────────────────────────────── */
 .logo-text {
   font-size: 26px;
   font-weight: 900;
   color: var(--green);
   letter-spacing: -1px;
   font-family: var(--font-main);
+  display: flex;
+  align-items: center;
+  gap: 1px;
 }
+
 .logo-o {
-  display: inline-block;
   width: 26px;
   height: 26px;
   background: var(--green);
   color: white;
   border-radius: 50%;
-  text-align: center;
-  line-height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 16px;
-  margin-left: 1px;
-  vertical-align: middle;
+  flex-shrink: 0;
 }
+
+/* ── Nav buttons ──────────────────────────────────── */
 .navbar-center {
   display: flex;
-  gap: 8px;
+  gap: 4px;
 }
+
 .nav-btn {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 20px;
-  border: none;
-  font-size: 21px;
+  padding: 8px 16px;
+  border: 2px solid transparent;
+  background: transparent;
+  font-size: 15px;
   font-family: var(--font-main);
   font-weight: 600;
   color: var(--text-dark);
@@ -49,24 +58,31 @@
   border-radius: 8px;
   transition: background 0.15s, color 0.15s;
 }
+
 .nav-btn:hover {
   background: var(--green-light);
   color: var(--green);
 }
+
 .nav-btn--active {
-  border: 2px solid var(--green);
+  border-color: var(--green);
   color: var(--green);
 }
+
 .nav-icon {
-  font-size: 16px;
+  font-size: 15px;
+  line-height: 1;
 }
+
+/* ── Right side ───────────────────────────────────── */
 .navbar-right {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
 }
+
 .login-btn {
-  padding: 8px 20px;
+  padding: 8px 16px;
   border: none;
   background: transparent;
   font-size: 15px;
@@ -77,11 +93,12 @@
   border-radius: 8px;
   transition: background 0.15s;
 }
+
 .login-btn:hover {
   background: var(--green-light);
 }
 
-/* ── Theme Toggle ─────────────────────────────────── */
+/* ── Theme toggle ─────────────────────────────────── */
 .theme-toggle {
   background: none;
   border: none;
@@ -92,15 +109,13 @@
 }
 
 .theme-toggle-track {
-  display: flex;
-  align-items: center;
-  width: 52px;
-  height: 28px;
+  width: 48px;
+  height: 26px;
   background: var(--toggle-track, #e0e0e0);
-  border-radius: 14px;
-  padding: 3px;
-  transition: background 0.3s;
+  border-radius: 13px;
+  padding: 2px;
   position: relative;
+  transition: background 0.3s;
 }
 
 .theme-toggle-thumb {
@@ -112,8 +127,9 @@
   align-items: center;
   justify-content: center;
   font-size: 13px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
   position: absolute;
-  left: var(--toggle-thumb-x, 3px);
+  top: 2px;
+  left: var(--toggle-thumb-x, 2px);
   transition: left 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
