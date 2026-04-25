@@ -1,48 +1,60 @@
 # 🎮 Playo Clone (React + Vite)
 
-A modern **Playo-inspired sports platform UI** built using React.
-This project now includes **authentication flow + protected routing**, simulating a real-world sports booking application.
+A modern **Playo-inspired sports platform UI** built using React, featuring **authentication, protected routing, interactive game participation, and local persistence**.
+
+This project simulates a real-world sports booking platform with a **clean UI + functional frontend logic**.
 
 ---
 
 ## 🌟 Overview
 
-This app recreates a sports platform where users can:
+This app allows users to:
 
 * 🏃 Discover sports activities
-* 📅 Book venues
-* 🎓 Explore training programs
-* 🔐 Login / Signup to access dashboard
-* ❓ Learn through FAQs
+* 📅 View and join games
+* ❓ Ask queries about games
+* 👥 See players in a game
+* 🔐 Login / Signup to access the app
+* 🚪 Logout safely (without losing account data)
 
-👉 The app uses **authentication gating** — users must log in before accessing the main app.
+👉 The app is **auth-protected** — users must log in before accessing any content.
 
 ---
 
-## 🔐 Authentication System (NEW)
+## 🔐 Authentication System
 
 ### ✅ Features
 
-* Login & Signup UI (Playo-themed)
+* Login & Signup UI (custom styled)
 * User stored in `localStorage`
-* Auth state managed using React (`useState`)
-* Protected app (routes hidden until login)
-* Logout functionality
-* Auto-login after signup
+* Auth state handled via React (`useState`)
+* Protected routing (no access without login)
+* Logout support (without deleting user data)
 
 ---
 
 ### 🔁 Auth Flow
 
-1. User opens app → sees Login / Signup
-2. Signup → account stored + auto login
-3. Login → validates credentials
-4. Auth success → loads full app (Layout + Routes)
-5. Logout → returns to Login screen (user data retained)
+1. App loads → checks `localStorage.auth`
+2. If `false` → shows Login / Signup
+3. Signup:
+
+   * Saves user in `localStorage`
+   * Can auto-login (optional)
+4. Login:
+
+   * Validates credentials
+   * Sets `auth = true`
+5. App unlocks → routes + layout visible
+6. Logout:
+
+   * Sets `auth = false`
+   * Redirects to Login page
+   * ✅ User data remains stored
 
 ---
 
-### 🧠 Auth Logic (Core Idea)
+### 🧠 Core Auth Logic
 
 ```js
 const [auth, setAuth] = useState(
@@ -50,27 +62,26 @@ const [auth, setAuth] = useState(
 );
 
 if (!auth) {
-  return <Login / Signup />;
+  return <LoginSignup />;
 }
 ```
 
 ---
 
-## 🧩 Architecture Highlights
+## 🔒 Protected Routing (Key Concept)
 
-### 🔒 Protected Layout Routing (UPDATED)
-
-* App routes only render **after authentication**
-* Layout includes:
-
-  * ✅ Navbar
-  * ✅ Dynamic content (`Outlet`)
-  * ✅ Footer
+Routes are only accessible **after login**:
 
 ```jsx
 {auth ? (
   <BrowserRouter>
-    <Layout />
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/Play" element={<Play />} />
+        <Route path="/About" element={<AboutFAQ />} />
+      </Route>
+    </Routes>
   </BrowserRouter>
 ) : (
   <LoginSignup />
@@ -79,17 +90,40 @@ if (!auth) {
 
 ---
 
+## 🧩 Architecture Highlights
+
+### 🏗️ Layout System
+
+`Layout.jsx` wraps all pages:
+
+```jsx
+<Navbar />
+<Outlet />
+<Footer />
+```
+
+✔ Shared UI across all pages
+✔ Clean separation of structure and content
+
+---
+
 ## 🚀 Features
 
-### 🔗 Routing System
+---
 
-* Built with `react-router-dom`
-* Nested routes using `Outlet`
-* Pages:
+### 🧭 Navbar
 
-  * `/` → Home
-  * `/Play` → Play
-  * `/About` → About / FAQ
+* Navigation using `Link`
+* Routes:
+
+  * Home
+  * Play
+  * About
+* 🚪 Logout button:
+
+  * Sets `auth = false`
+  * Redirects to Login
+  * ❌ Does NOT delete user
 
 ---
 
@@ -97,49 +131,151 @@ if (!auth) {
 
 * Hero section
 * Venue booking UI
-* Game discovery
+* Discover games
 * Popular sports
-* FAQ
+* FAQ section
 
 ---
 
 ### 🏃 Play Page
 
-* Modular sections (`Part2`, `Part3`, `Part4`)
-* Card-based UI
-* Scalable design
+* Displays list of game cards
+* Uses reusable `Card.jsx`
+* Each card opens **Game Detail modal**
 
 ---
 
-### ❓ About / FAQ Page
+### 🃏 Game Card (`Card.jsx`)
 
-* Frequently asked questions
-* Platform details
+Displays:
+
+* Game type & format
+* Price (if paid)
+* Players going (avatars)
+* Host + karma
+* Date & venue
+* Skill level
+* Status badges:
+
+  * ✅ JOINED
+  * 📌 BOOKED
 
 ---
 
-### 🧭 Navbar (UPDATED)
+### 🎯 Game Detail (`GameDetail.jsx`)
 
-* Navigation across routes
-* Logout button
-* Logout clears auth (not user data)
-* Redirects to Login screen
+A **fully interactive modal system**
+
+#### 🧠 Features:
+
+##### 🧾 Game Info
+
+* Title, host, venue
+* Google Maps integration
+* Tags (type, price, booked, joined)
+
+##### 👥 Players Section
+
+* List of all players
+* Host highlighted
+
+##### 📊 Stats
+
+* Players going
+* Skill level
+* Distance
 
 ---
 
-### 📌 Footer
+### 💬 Queries System (NEW)
 
-* Persistent across all pages
-* Improves UI consistency
+Each game has its own **query thread**
+
+#### ✅ Features:
+
+* Ask questions about a game
+* Queries saved in `localStorage`
+* Per-game persistence:
+
+  ```js
+  playo_queries_<gameId>
+  ```
+* Shows:
+
+  * Author
+  * Message
+  * Timestamp
+* Remove queries individually ❌
+
+---
+
+### ➕ Add Query Flow
+
+1. Click **SEND QUERY**
+2. Opens input box
+3. Type message
+4. Press Enter / Send
+5. Query appears instantly
+
+---
+
+### 🎮 Join / Leave Game System
+
+#### ✅ Join Game
+
+* Click **JOIN GAME**
+* Updates UI instantly
+* Shows:
+
+  ```
+  ✅ You're in!
+  ```
+
+---
+
+#### ❌ Leave Game (Improved UX)
+
+* Click **Leave Game**
+* Confirmation appears:
+
+```
+Sure? [Yes, Leave] [Cancel]
+```
+
+* Prevents accidental exits
+
+---
+
+### 🧠 Join State Handling
+
+* Controlled via parent state (`Play.jsx`)
+* Passed as:
+
+```js
+isJoined
+onJoin
+onUnjoin
+```
+
+---
+
+### 💾 LocalStorage Usage
+
+| Key                      | Purpose                  |
+| ------------------------ | ------------------------ |
+| `user`                   | Stores user credentials  |
+| `auth`                   | Login state (true/false) |
+| `playo_queries_<gameId>` | Queries per game         |
 
 ---
 
 ## 🛠️ Tech Stack
 
-* ⚛️ React
-* ⚡ Vite
+* ⚛️ React (Hooks-based)
+* ⚡ Vite (fast dev server)
 * 🧭 React Router DOM
 * 🎨 CSS Modules + CSS
+* 💾 LocalStorage (state persistence)
 
 ---
 
@@ -156,6 +292,7 @@ src/
 │
 │── components2/
 │   ├── Card.jsx
+│   ├── GameDetail.jsx
 │   ├── Part2.jsx
 │   ├── Part3.jsx
 │   ├── Part4.jsx
@@ -170,28 +307,11 @@ src/
 
 ## ⚙️ Installation & Setup
 
-Clone the repository:
-
 ```bash
 git clone https://github.com/Manas-Sandhu/Playo-Clone-using-React.git
 cd Playo-Clone-using-React
-```
-
-Install dependencies:
-
-```bash
 npm install
-```
-
-Install router (important):
-
-```bash
 npm install react-router-dom
-```
-
-Run the app:
-
-```bash
 npm run dev
 ```
 
@@ -203,50 +323,56 @@ npm run dev
 | -------- | ------------ | --------------- |
 | `/`      | 🔒 Protected | Home page       |
 | `/Play`  | 🔒 Protected | Play activities |
-| `/About` | 🔒 Protected | FAQ / About     |
+| `/About` | 🔒 Protected | FAQ page        |
 
 ---
 
-## 🔐 LocalStorage Usage
+## 🎨 UI Highlights
 
-| Key    | Purpose                  |
-| ------ | ------------------------ |
-| `user` | Stores user details      |
-| `auth` | Login state (true/false) |
+* Dark-themed modern UI
+* Gradient panels (Login/Signup)
+* Card-based layout
+* Modal-based Game Details
+* Clean spacing & typography
 
 ---
 
-## 📸 Screenshots
+## 🔥 Key Learning Outcomes
 
-> *(Add Login, Signup, Dashboard screenshots here for best impact)*
+* 🔐 Authentication without backend
+* 🔒 Protected routing in React
+* 🧩 Component-based architecture
+* 💾 LocalStorage state management
+* 🎯 UI state syncing (join/unjoin)
+* 🧠 Derived state & props flow
 
 ---
 
 ## 🔮 Future Improvements
 
-* 🔐 Multi-user authentication
-* 🌐 Backend integration (JWT / API)
-* 📍 Location-based sports search
-* 💳 Booking & payments
-* 📱 Mobile responsiveness
-* 🌙 Dark mode toggle
+* 🔐 Real backend auth (JWT)
+* 👥 Multi-user system
+* 💳 Payments integration
+* 📍 Location-based filtering
+* 🔔 Notifications
+* 🌙 Dark mode toggle (global)
+* 📱 Full mobile responsiveness
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome!
-Feel free to fork and submit pull requests.
+Contributions welcome!
+Fork → Improve → PR 🚀
 
 ---
 
 ## 📄 License
 
-For learning and demonstration purposes.
+For learning and demo purposes.
 
 ---
 
-## 👩‍💻 Author
+## 👩‍💻 Authors
 
 **Palakpreet Kaur & Manas Sandhu**
-
