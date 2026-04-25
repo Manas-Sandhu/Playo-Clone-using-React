@@ -226,3 +226,38 @@
   width: 18px;
   height: 18px;
 }
+/* Signupcard only */
+.strengthWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 6px 0 4px;
+}
+.strengthBar {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+}
+.strengthSegment {
+  height: 4px;
+  flex: 1;
+  border-radius: 2px;
+  transition: background 0.2s;
+}
+.strengthLabel {
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 36px;
+}
+.ruleList {
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+.ruleItem {
+  font-size: 12px;
+  transition: color 0.2s;
+}
