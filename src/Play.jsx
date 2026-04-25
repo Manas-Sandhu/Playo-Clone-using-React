@@ -4,6 +4,7 @@ import Part2 from "./components2/Part2";
 import Part3 from "./components2/Part3";
 import Part4 from "./components2/Part4";
 
+
 function Play() {
   return (
     <div className="app">

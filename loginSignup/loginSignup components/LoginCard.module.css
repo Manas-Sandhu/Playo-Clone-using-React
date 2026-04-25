@@ -2,210 +2,202 @@
   display: flex;
   width: 100%;
   min-height: 100vh;
-  background-color: #1a1a2e;
-  border-radius: 16px;
-  overflow: hidden;
+  background: #f5f7fa;
 }
 
+/* LEFT PANEL */
 .imagePanel {
   flex: 1;
   position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  min-height: 400px;
   overflow: hidden;
 }
 
 .imagePlaceholder {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    160deg,
-    #3d1a78 0%,
-    #6b21a8 30%,
-    #7c3aed 50%,
-    #4c1d95 70%,
-    #1e1b4b 100%
-  );
+  background: url("https://images.unsplash.com/photo-1517649763962-0c623066013b")
+    center/cover no-repeat;
+}
+
+/* subtle overlay like Playo */
+.imagePlaceholder::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
 }
 
 .slideIndicators {
   position: absolute;
-  bottom: 1.5rem;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   gap: 6px;
-  z-index: 2;
 }
 
 .dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.4);
 }
 
 .dotActive {
-  width: 24px;
-  border-radius: 3px;
-  background: rgba(255, 255, 255, 0.9);
+  width: 20px;
+  border-radius: 4px;
+  background: #fff;
 }
 
+/* RIGHT PANEL */
 .formPanel {
-  width: 480px;
-  flex-shrink: 0;
-  background-color: #1e1e2e;
+  width: 440px;
+  background: #ffffff;
   padding: 3rem 2.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.05);
 }
 
+/* TEXT */
 .title {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 700;
-  color: #ffffff;
-  margin: 0 0 0.5rem;
+  margin-bottom: 6px;
+  color: #222;
 }
 
 .subtitle {
   font-size: 14px;
-  color: #888;
-  margin: 0 0 2rem;
+  color: #666;
+  margin-bottom: 2rem;
 }
 
 .signupLink {
-  color: #ffffff;
-  text-decoration: underline;
+  color: #1db954;
+  font-weight: 500;
   cursor: pointer;
 }
 
+/* INPUTS */
 .inputGroup {
-  display: flex;
-  flex-direction: column;
   margin-bottom: 12px;
 }
 
 .input {
-  background-color: #2a2a3e;
-  border: 1.5px solid transparent;
-  border-radius: 10px;
-  padding: 14px 16px;
-  font-size: 15px;
-  color: #ffffff;
-  outline: none;
-  transition: border-color 0.2s;
   width: 100%;
-  box-sizing: border-box;
+  padding: 13px 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s;
 }
 
 .input::placeholder {
-  color: #666;
+  color: #aaa;
 }
 
 .input:focus {
-  border-color: #8b5cf6;
+  border-color: #1db954;
+  box-shadow: 0 0 0 2px rgba(29, 185, 84, 0.15);
 }
 
+/* PASSWORD */
 .passwordWrapper {
   position: relative;
 }
 
 .passwordWrapper .input {
-  padding-right: 44px;
+  padding-right: 40px;
 }
 
 .eyeButton {
   position: absolute;
-  right: 14px;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  background: none;
   border: none;
+  background: transparent;
   cursor: pointer;
-  color: #888;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
+  color: #777;
 }
 
+/* FORGOT */
 .forgotRow {
-  display: flex;
-  justify-content: flex-end;
-  margin: 4px 0 24px;
+  text-align: right;
+  margin-bottom: 18px;
 }
 
 .forgotLink {
   font-size: 13px;
-  color: #8b5cf6;
-  text-decoration: underline;
+  color: #1db954;
   cursor: pointer;
 }
 
+/* LOGIN BUTTON */
 .loginButton {
   width: 100%;
-  padding: 15px;
-  background: linear-gradient(90deg, #7c3aed, #a855f7);
+  padding: 13px;
+  border-radius: 8px;
   border: none;
-  border-radius: 10px;
-  color: #ffffff;
-  font-size: 16px;
+  background: #1db954;
+  color: #fff;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: background 0.2s;
 }
 
 .loginButton:hover {
-  opacity: 0.9;
+  background: #17a74a;
 }
 
+/* DIVIDER */
 .divider {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   margin: 20px 0;
 }
 
 .dividerLine {
   flex: 1;
   height: 1px;
-  background-color: #333;
+  background: #eee;
 }
 
 .dividerText {
-  font-size: 13px;
-  color: #666;
-  white-space: nowrap;
+  font-size: 12px;
+  color: #999;
 }
 
+/* SOCIAL */
 .socialRow {
   display: flex;
-  gap: 12px;
+  gap: 10px;
 }
 
 .socialButton {
   flex: 1;
-  padding: 13px;
-  background: transparent;
-  border: 1.5px solid #333;
-  border-radius: 10px;
-  color: #ffffff;
-  font-size: 15px;
-  font-weight: 500;
+  padding: 11px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: #fff;
+  font-size: 14px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  transition: border-color 0.2s, background-color 0.2s;
+  gap: 6px;
+  transition: all 0.2s;
 }
 
 .socialButton:hover {
-  border-color: #555;
-  background-color: #2a2a3e;
+  background: #f7f7f7;
+  border-color: #ccc;
 }
 
 .socialIcon {
