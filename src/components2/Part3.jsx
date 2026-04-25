@@ -527,11 +527,6 @@ function Part3() {
 
       {/* Filter Bar */}
       <div className="filter-bar">
-        <button className="filter-toggle">
-          <span>🎮</span> GameTime by Playo
-          <span className="toggle-switch"></span>
-        </button>
-
         <button
           className="filter-btn"
           onClick={() => setShowFilterModal(true)}
