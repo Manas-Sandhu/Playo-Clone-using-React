@@ -1,4 +1,4 @@
-/* ── ABOUT TEAM ── */
+
 .about-faq-wrapper {
   width: 100%;
 }
@@ -76,7 +76,7 @@
   color: white;
 }
 
-/* Photo Grid */
+
 .about-right {
   flex: 1.4;
 }
@@ -123,7 +123,7 @@
   transform: scale(1.04);
 }
 
-/* ── FAQ ── */
+
 .faq-section {
   padding: 48px 40px;
   background: var(--bg-light);

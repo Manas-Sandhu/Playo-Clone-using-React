@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Gamedetail.css";
 
-// ── localStorage helpers ───────────────────────────────────────────────────
+
 
 const QUERIES_KEY = (id) => `playo_queries_${id}`;
 
@@ -18,10 +18,10 @@ function saveQueries(gameId, queries) {
   } catch {}
 }
 
-// ── GameDetail ─────────────────────────────────────────────────────────────
+
 
 function GameDetail({ game, onBack, isJoined, onJoin, onUnjoin }) {
-  // Derive display fields from the game object
+
   const g = {
     ...game,
     title: `${game.type ? game.type + " " : ""}${game.sport} Activity`,
@@ -44,19 +44,19 @@ function GameDetail({ game, onBack, isJoined, onJoin, onUnjoin }) {
     venuesNearby: [],
   };
 
-  // ── State ──────────────────────────────────────────────────────────────
+
   const [activeTab, setActiveTab]           = useState("instructions");
   const [queryText, setQueryText]           = useState("");
   const [queries, setQueries]               = useState(() => loadQueries(game.id));
   const [showQueryBox, setShowQueryBox]     = useState(false);
   const [showUnjoinConfirm, setShowUnjoinConfirm] = useState(false);
 
-  // Persist queries to localStorage whenever they change
+
   useEffect(() => {
     saveQueries(game.id, queries);
   }, [game.id, queries]);
 
-  // Reload queries when a different game is opened
+
   useEffect(() => {
     setQueries(loadQueries(game.id));
     setQueryText("");
@@ -65,7 +65,7 @@ function GameDetail({ game, onBack, isJoined, onJoin, onUnjoin }) {
     setActiveTab("instructions");
   }, [game.id]);
 
-  // ── Handlers ───────────────────────────────────────────────────────────
+
   const handleSendQuery = () => {
     const trimmed = queryText.trim();
     if (!trimmed) return;
@@ -103,7 +103,7 @@ function GameDetail({ game, onBack, isJoined, onJoin, onUnjoin }) {
         </button>
 
         <div className="gd-layout">
-          {/* ══ LEFT COLUMN ══════════════════════════════════════════════ */}
+
           <div className="gd-left">
 
             {/* Hero Card */}
@@ -197,7 +197,7 @@ function GameDetail({ game, onBack, isJoined, onJoin, onUnjoin }) {
                   <p className="gd-no-queries">No queries yet. Be the first to ask!</p>
                 )}
 
-                {/* Saved queries with remove button */}
+
                 {queries.map((q) => (
                   <div key={q.id} className="gd-query-item">
                     <span className="gd-query-author">{q.author}:</span>
@@ -260,7 +260,7 @@ function GameDetail({ game, onBack, isJoined, onJoin, onUnjoin }) {
             </div>
           </div>
 
-          {/* ══ RIGHT COLUMN ═════════════════════════════════════════════ */}
+
           <div className="gd-right">
             {/* Players */}
             <div className="gd-panel">
@@ -318,7 +318,7 @@ function GameDetail({ game, onBack, isJoined, onJoin, onUnjoin }) {
           </button>
 
           {isJoined ? (
-            /* ── Joined state: show status + unjoin flow ── */
+
             <div className="gd-joined-actions">
               <span className="gd-joined-label">✅ You're in!</span>
               {!showUnjoinConfirm ? (

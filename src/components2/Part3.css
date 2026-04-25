@@ -334,13 +334,7 @@ body {
   color: #fff;
 }
 
-/* ════════════════════════════════════════════════════════════════════════
-   Part3 additions — paste these at the BOTTOM of your Part3.css
-   ════════════════════════════════════════════════════════════════════════ */
 
-/* ── Active filter pill ─────────────────────────────────────────────────
-   Shown instead of a button/dropdown when that filter is selected.
-   ─────────────────────────────────────────────────────────────────────── */
 .active-filter-pill {
   display: inline-flex;
   align-items: center;
@@ -386,9 +380,7 @@ body {
   transform: scale(1.2);
 }
 
-/* ── Clear All Filters button ───────────────────────────────────────────
-   Sits right after the Joined button in the filter bar.
-   ─────────────────────────────────────────────────────────────────────── */
+
 .filter-btn--clear-all {
   background: #fff8e1;
   border: 1.5px solid #ffa000 !important;
@@ -404,9 +396,7 @@ body {
   border-color: #e65100 !important;
 }
 
-/* ── No-results state ───────────────────────────────────────────────────
-   Replaces the old "😕 No games match" + button block.
-   ─────────────────────────────────────────────────────────────────────── */
+
 .no-results {
   display: flex;
   flex-direction: column;

@@ -5,7 +5,7 @@ const HeroSection = () => {
   return (
     <div className="hero-wrapper">
 
-      {/* Promo Banner */}
+
       <div className="promo-banner">
         <p className="promo-text">
           WAP Group Project! - <strong>MANAS & PALAK</strong>
@@ -13,7 +13,7 @@ const HeroSection = () => {
         </p>
       </div>
 
-      {/* Hero Content */}
+
       <div className="hero-content">
         <div className="hero-inner">
           <div className="hero-left">

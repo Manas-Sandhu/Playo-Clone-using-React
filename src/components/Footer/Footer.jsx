@@ -28,7 +28,7 @@ export default function Footer() {
   const visibleCities = showAllCities ? cities : cities.slice(0, 8);
   return (
     <div>
-      {/* ── Footer ── */}
+
       <footer className="footer">
         
         <div className="footer-top">

@@ -21,7 +21,7 @@ export default function SportsDropdown({ selected, onSelect }) {
   const [query, setQuery]     = useState('');
   const ref                   = useRef(null);
 
-  // close on outside click
+  
   useEffect(() => {
     const handler = (e) => {
       if (ref.current && !ref.current.contains(e.target)) setOpen(false);
@@ -36,13 +36,13 @@ export default function SportsDropdown({ selected, onSelect }) {
 
   const handleSelect = (label) => {
     onSelect && onSelect(label === selected ? null : label);
-    // keep open so user can change selection; close if same clicked
+
     if (label === selected) setOpen(false);
   };
 
   return (
     <div className="sd-wrapper" ref={ref}>
-      {/* Trigger button — styled to match your existing .filter-btn */}
+
       <button
         className={`filter-btn sd-trigger${open ? ' sd-trigger--open' : ''}`}
         onClick={() => setOpen(o => !o)}

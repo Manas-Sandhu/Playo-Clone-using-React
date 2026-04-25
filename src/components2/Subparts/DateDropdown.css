@@ -1,17 +1,17 @@
-/* ── Wrapper ───────────────────────────────────────── */
+
 .dd-wrapper {
   position: relative;
   display: inline-block;
 }
 
-/* ── Trigger active state ──────────────────────────── */
+
 .dd-trigger--open {
   background: #f0faf2;
   border-color: #2dc44e;
   color: #2dc44e;
 }
 
-/* ── Dropdown panel ────────────────────────────────── */
+
 .dd-dropdown {
   position: absolute;
   top: calc(100% + 8px);
@@ -30,7 +30,7 @@
   to   { opacity: 1; transform: translateY(0)   scale(1);    }
 }
 
-/* ── Month nav ─────────────────────────────────────── */
+
 .dd-nav {
   display: flex;
   align-items: center;
@@ -60,7 +60,7 @@
   color: #1a1a1a;
 }
 
-/* ── 7-col grid shared ─────────────────────────────── */
+
 .dd-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -68,7 +68,7 @@
   padding: 0 10px;
 }
 
-/* ── Day-of-week headers ───────────────────────────── */
+
 .dd-day-headers { margin-bottom: 4px; }
 
 .dd-day-header {
@@ -80,7 +80,7 @@
   letter-spacing: 0.3px;
 }
 
-/* ── Day cells ─────────────────────────────────────── */
+
 .dd-cells { row-gap: 4px; }
 
 .dd-cell {
@@ -102,14 +102,14 @@
 
 .dd-cell--empty { cursor: default; pointer-events: none; }
 
-/* Today ring */
+
 .dd-cell--today {
   border: 1.5px solid #2dc44e;
   color: #2dc44e;
   font-weight: 700;
 }
 
-/* Selected fill */
+
 .dd-cell--selected {
   background: #2dc44e !important;
   color: #fff !important;
@@ -117,7 +117,7 @@
   border: none;
 }
 
-/* ── Footer ────────────────────────────────────────── */
+
 .dd-footer {
   text-align: center;
   padding: 10px 0 4px;

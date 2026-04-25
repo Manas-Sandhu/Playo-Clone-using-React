@@ -392,7 +392,7 @@ const games = [
 
 const PAGE_SIZE = 6;
 
-// ── Helpers ────────────────────────────────────────────────────────────────
+
 
 function matchesTime(game, timeSlots) {
   if (timeSlots.length === 0) return true;
@@ -430,7 +430,7 @@ function matchesSport(game, sport) {
   return game.sport.toLowerCase() === sport.toLowerCase();
 }
 
-// ── GameCard ───────────────────────────────────────────────────────────────
+
 
 function GameCard({ game, isJoined, onClick }) {
   return (
@@ -474,9 +474,9 @@ function GameCard({ game, isJoined, onClick }) {
   );
 }
 
-// ── Part3 ──────────────────────────────────────────────────────────────────
 
-// ── localStorage helpers ───────────────────────────────────────────────────
+
+
 const LS_KEY = "playo_filters_v1";
 
 function loadFilters() {
@@ -484,9 +484,9 @@ function loadFilters() {
     const raw = localStorage.getItem(LS_KEY);
     if (!raw) return null;
     const saved = JSON.parse(raw);
-    // rawDate was serialised as ISO string — restore to Date object
+
     if (saved.selectedDate) saved.selectedDate = new Date(saved.selectedDate);
-    // joinedGames was serialised as array — restore to Set
+
     if (Array.isArray(saved.joinedGames))
       saved.joinedGames = new Set(saved.joinedGames);
     return saved;
@@ -499,7 +499,7 @@ function saveFilters(state) {
   try {
     const toSave = {
       ...state,
-      // Date → ISO string so JSON.stringify keeps it
+  
       selectedDate: state.selectedDate ? state.selectedDate.toISOString() : null,
       // Set → array
       joinedGames: [...state.joinedGames],
@@ -510,13 +510,13 @@ function saveFilters(state) {
   }
 }
 
-// ── Part3 ──────────────────────────────────────────────────────────────────
+
 
 function Part3() {
-  // ── Seed state from localStorage on first render ──────────────────────────
+
   const saved = loadFilters();
 
-  // ── Filter state ──────────────────────────────────
+
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [selectedSport, setSelectedSport]     = useState(saved?.selectedSport   ?? null);
   const [selectedDate,  setSelectedDate]       = useState(saved?.selectedDate    ?? null);
@@ -531,7 +531,7 @@ function Part3() {
   const [activeTimes,    setActiveTimes]   = useState(saved?.activeTimes    ?? []);
   const [activeDistance, setActiveDistance]= useState(saved?.activeDistance ?? 50);
 
-  // ── Persist filters to localStorage whenever they change ──────────────────
+
   useEffect(() => {
     saveFilters({
       selectedSport,
@@ -546,7 +546,7 @@ function Part3() {
   }, [selectedSport, selectedDate, payJoinActive, joinedGames, joinedActive,
       activeSkills, activeTimes, activeDistance]);
 
-  // ── Helpers ───────────────────────────────────────
+
   const clearAllFilters = () => {
     setSelectedSport(null);
     setSelectedDate(null);
@@ -558,7 +558,7 @@ function Part3() {
     setShowAll(false);
   };
 
-  // ── Handle FilterModal apply ───────────────────────
+
   const handleApplyFilters = ({
     selectedTimes,
     selectedSkills,
@@ -569,7 +569,7 @@ function Part3() {
     setActiveDistance(distanceRange);
   };
 
-  // ── Derived: filtered games ────────────────────────
+
   const filteredGames = useMemo(() => {
     return games.filter((game) => {
       if (!matchesSport(game, selectedSport)) return false;
@@ -597,7 +597,7 @@ function Part3() {
     : filteredGames.slice(0, PAGE_SIZE);
   const hasMore = !showAll && filteredGames.length > PAGE_SIZE;
 
-  // ── Active filter count (for badge on Filter & Sort button) ──────────────
+
   const filterCount =
     activeTimes.length + activeSkills.length + (activeDistance < 50 ? 1 : 0);
 

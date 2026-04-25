@@ -50,7 +50,6 @@ const AboutFAQ = () => {
   return (
     <div className="about-faq-wrapper">
 
-      {/* ── About Team ── */}
       <section className="about-team">
         <div className="about-left">
           <h2 className="about-title">About the Team</h2>
@@ -83,7 +82,7 @@ const AboutFAQ = () => {
         </div>
       </section>
 
-      {/* ── FAQ ── */}
+
       <section className="faq-section">
 
         <div className="faq-inner">

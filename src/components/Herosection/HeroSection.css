@@ -2,7 +2,7 @@
   width: 100%;
 }
 
-/* PROMO BANNER */
+
 .promo-banner {
   background: linear-gradient(90deg, #111 0%, #f5a623 30%, #f5a623 70%, #111 100%);
   padding: 12px 40px;
@@ -34,17 +34,17 @@
   border-radius: 4px;
   font-weight: 800;
 }
-/* HERO CONTENT */
+
 .hero-content {
   display: flex;
   align-items: center;
-  justify-content: center; /* centers content */
+  justify-content: center; 
   padding: 60px 40px 80px;
   min-height: 480px;
   width: 100%;
 }
 
-/* INNER WRAPPER (controls layout width properly) */
+
 .hero-inner {
   width: 100%;
   max-width: 1200px;
@@ -53,12 +53,12 @@
   gap: 40px;
 }
 
-/* LEFT SIDE */
+
 .hero-left {
   flex: 1;
 }
 
-/* LOCATION */
+
 .location-pill {
   display: inline-flex;
   align-items: center;
@@ -78,7 +78,7 @@
   color: var(--green);
 }
 
-/* HEADING */
+
 .hero-heading {
   font-size: 36px;
   font-weight: 900;
@@ -88,7 +88,7 @@
   letter-spacing: -0.5px;
 }
 
-/* SUBTEXT */
+
 .hero-sub {
   font-size: 16px;
   color: var(--text-mid);
@@ -96,13 +96,13 @@
   max-width: 500px;
 }
 
-/* RIGHT SIDE */
+
 .hero-right {
   flex: 1;
   position: relative;
 }
 
-/* IMAGE GRID */
+
 .hero-grid {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
@@ -135,7 +135,7 @@
   transform: scale(1.04);
 }
 
-/* BADGE */
+
 .hero-badge {
   position: absolute;
   width: 64px;

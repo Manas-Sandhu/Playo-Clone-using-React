@@ -1,17 +1,17 @@
-/* ── Wrapper (positioning context) ────────────────── */
+
 .sd-wrapper {
   position: relative;
   display: inline-block;
 }
 
-/* ── Trigger button active state ───────────────────── */
+
 .sd-trigger--open {
   background: #f0faf2;
   border-color: #2dc44e;
   color: #2dc44e;
 }
 
-/* ── Dropdown panel ────────────────────────────────── */
+
 .sd-dropdown {
   position: absolute;
   top: calc(100% + 8px);
@@ -30,7 +30,7 @@
   to   { opacity: 1; transform: translateY(0)   scale(1);    }
 }
 
-/* ── Search row ────────────────────────────────────── */
+
 .sd-search-row {
   display: flex;
   align-items: center;
@@ -51,7 +51,7 @@
 
 .sd-search-icon { font-size: 15px; color: #aaa; }
 
-/* ── List ──────────────────────────────────────────── */
+
 .sd-list {
   list-style: none;
   margin: 0;
@@ -74,7 +74,7 @@
 .sd-item-icon  { font-size: 16px; width: 22px; text-align: center; }
 .sd-item-label { flex: 1; font-size: 14px; color: #222; }
 
-/* ── Radio circle ──────────────────────────────────── */
+
 .sd-radio {
   width: 18px;
   height: 18px;
@@ -87,7 +87,7 @@
   border: 5px solid #2dc44e;
 }
 
-/* ── Empty state ───────────────────────────────────── */
+
 .sd-empty {
   padding: 16px;
   text-align: center;

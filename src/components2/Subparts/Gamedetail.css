@@ -1,6 +1,6 @@
-/* ── GameDetail.css ──────────────────────────────────────────────────── */
 
-/* Overlay – dims background, scrollable */
+
+
 .gd-overlay {
   position: fixed;
   inset: 0;
@@ -13,7 +13,7 @@
   padding: 24px 16px 120px;
 }
 
-/* Main container */
+
 .gd-container {
   background: #f4f4f4;
   border-radius: 16px;
@@ -30,7 +30,7 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Back button */
+
 .gd-back-btn {
   background: none;
   border: none;
@@ -46,7 +46,7 @@
 }
 .gd-back-btn:hover { color: #1a1a1a; }
 
-/* Two-column layout */
+
 .gd-layout {
   display: grid;
   grid-template-columns: 1fr 300px;
@@ -54,7 +54,7 @@
   align-items: start;
 }
 
-/* ── LEFT COLUMN ───────────────────────────────────────────────────────── */
+
 
 .gd-hero-card {
   background: #fff;
@@ -152,7 +152,7 @@
 .gd-tag--booked  { background: #22c55e; color: #fff; }
 .gd-tag--joined  { background: #dcfce7; color: #15803d; border: 1.5px solid #86efac; }
 
-/* ── Tabs ──────────────────────────────────────────────────────────────── */
+
 
 .gd-tabs { display: flex; }
 
@@ -185,7 +185,7 @@
   margin-bottom: 20px;
 }
 
-/* ── Instructions Tab ──────────────────────────────────────────────────── */
+
 
 .gd-instructions {
   background: #fff;
@@ -220,7 +220,7 @@
 
 .gd-pm-text { font-size: 14px; color: #555; line-height: 1.65; margin: 0; }
 
-/* ── Queries Tab ───────────────────────────────────────────────────────── */
+
 
 .gd-queries-panel {
   background: #fff;
@@ -237,7 +237,7 @@
   padding: 24px 0;
 }
 
-/* ── Query item ─────────────────────────────────────────────────────────── */
+
 
 .gd-query-item {
   display: flex;
@@ -272,7 +272,7 @@
   white-space: nowrap;
 }
 
-/* ── Remove query button ────────────────────────────────────────────────── */
+
 
 .gd-query-remove {
   flex-shrink: 0;
@@ -298,7 +298,7 @@
   transform: scale(1.08);
 }
 
-/* ── Query compose box ──────────────────────────────────────────────────── */
+
 
 .gd-query-box { margin-top: 16px; }
 
@@ -349,7 +349,7 @@
 .gd-query-send:hover:not(:disabled) { background: #16a34a; }
 .gd-query-send:disabled { background: #a3e6c0; cursor: not-allowed; }
 
-/* ── Similar Games header ──────────────────────────────────────────────── */
+
 
 .gd-similar-header {
   display: flex;
@@ -372,7 +372,7 @@
   letter-spacing: 0.5px;
 }
 
-/* ── RIGHT COLUMN ──────────────────────────────────────────────────────── */
+
 
 .gd-panel {
   background: #fff;
@@ -438,9 +438,7 @@
   padding: 0;
 }
 
-/* ══════════════════════════════════════════════════════════════════════════
-   Sticky Footer CTA — Join / Unjoin
-   ══════════════════════════════════════════════════════════════════════════ */
+
 
 .gd-footer-cta {
   position: sticky;
@@ -458,7 +456,7 @@
   flex-wrap: wrap;
 }
 
-/* Send Query button */
+
 .gd-send-query-btn {
   padding: 12px 28px;
   border: 1.5px solid #ccc;
@@ -473,7 +471,7 @@
 }
 .gd-send-query-btn:hover { background: #f5f5f5; border-color: #aaa; }
 
-/* Join button */
+
 .gd-join-btn {
   padding: 12px 36px;
   border: none;
@@ -488,7 +486,7 @@
 }
 .gd-join-btn:hover { background: #16a34a; transform: scale(1.02); }
 
-/* ── Joined state in footer ─────────────────────────────────────────────── */
+
 
 .gd-joined-actions {
   display: flex;
@@ -498,7 +496,7 @@
   justify-content: flex-end;
 }
 
-/* Green pill showing joined status */
+
 .gd-joined-label {
   display: inline-flex;
   align-items: center;
@@ -513,7 +511,7 @@
   white-space: nowrap;
 }
 
-/* Leave Game ghost button */
+
 .gd-unjoin-btn {
   padding: 11px 22px;
   border: 1.5px solid #fca5a5;
@@ -532,7 +530,7 @@
   border-color: #dc2626;
 }
 
-/* ── Two-step unjoin confirm ────────────────────────────────────────────── */
+
 
 .gd-unjoin-confirm {
   display: flex;
@@ -579,7 +577,7 @@
 }
 .gd-unjoin-confirm-no:hover { background: #f5f5f5; }
 
-/* ── Responsive ────────────────────────────────────────────────────────── */
+
 
 @media (max-width: 768px) {
   .gd-layout { grid-template-columns: 1fr; }

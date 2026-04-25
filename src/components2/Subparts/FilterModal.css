@@ -1,4 +1,4 @@
-/* ── Overlay ─────────────────────────────────────── */
+
 .fm-overlay {
   position: fixed;
   inset: 0;
@@ -15,7 +15,7 @@
   to   { opacity: 1; }
 }
 
-/* ── Modal shell ─────────────────────────────────── */
+
 .fm-modal {
   background: #fff;
   border-radius: 16px;
@@ -34,7 +34,7 @@
   to   { transform: translateY(0);    opacity: 1; }
 }
 
-/* ── Header ──────────────────────────────────────── */
+
 .fm-header {
   display: flex;
   align-items: center;
@@ -69,14 +69,14 @@
   color: #111;
 }
 
-/* ── Divider ─────────────────────────────────────── */
+
 .fm-divider {
   height: 1px;
   background: #e8e8e8;
   flex-shrink: 0;
 }
 
-/* ── Body (sidebar + panel) ──────────────────────── */
+
 .fm-body {
   display: flex;
   flex: 1;
@@ -84,7 +84,7 @@
   min-height: 300px;
 }
 
-/* ── Left Tab Sidebar ────────────────────────────── */
+
 .fm-tabs {
   width: 140px;
   flex-shrink: 0;
@@ -120,14 +120,14 @@
   background: #27b346;
 }
 
-/* ── Right Option Panel ──────────────────────────── */
+
 .fm-panel {
   flex: 1;
   overflow-y: auto;
   padding: 8px 0;
 }
 
-/* ── Option List (Time & Skill) ──────────────────── */
+
 .fm-option-list {
   list-style: none;
   margin: 0;
@@ -161,7 +161,7 @@
   color: #888;
 }
 
-/* ── Custom Checkbox ─────────────────────────────── */
+
 .fm-checkbox {
   appearance: none;
   -webkit-appearance: none;
@@ -191,7 +191,7 @@
   transform: rotate(45deg);
 }
 
-/* ── Distance Slider Panel ───────────────────────── */
+
 .fm-distance-panel {
   padding: 28px 28px 16px;
 }
@@ -270,7 +270,7 @@
   color: #aaa;
 }
 
-/* ── Footer ──────────────────────────────────────── */
+
 .fm-footer {
   display: flex;
   align-items: center;
