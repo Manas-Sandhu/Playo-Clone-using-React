@@ -1,38 +1,80 @@
 # 🎮 Playo Clone (React + Vite)
 
 A modern **Playo-inspired sports platform UI** built using React.
-This project demonstrates **component-based architecture, reusable layouts, and client-side routing** to simulate a real-world sports booking application.
+This project now includes **authentication flow + protected routing**, simulating a real-world sports booking application.
 
 ---
 
 ## 🌟 Overview
 
-This app recreates the experience of a sports platform where users can:
+This app recreates a sports platform where users can:
 
 * 🏃 Discover sports activities
 * 📅 Book venues
 * 🎓 Explore training programs
+* 🔐 Login / Signup to access dashboard
 * ❓ Learn through FAQs
 
-It uses a **shared layout system** with a persistent Navbar and Footer across all pages.
+👉 The app uses **authentication gating** — users must log in before accessing the main app.
 
 ---
 
-## 🧠 Architecture Highlights
+## 🔐 Authentication System (NEW)
 
-### 🧩 Layout-Based Routing
+### ✅ Features
 
-* Central `Layout.jsx` component:
+* Login & Signup UI (Playo-themed)
+* User stored in `localStorage`
+* Auth state managed using React (`useState`)
+* Protected app (routes hidden until login)
+* Logout functionality
+* Auto-login after signup
 
-  * ✅ Navbar (top)
+---
+
+### 🔁 Auth Flow
+
+1. User opens app → sees Login / Signup
+2. Signup → account stored + auto login
+3. Login → validates credentials
+4. Auth success → loads full app (Layout + Routes)
+5. Logout → returns to Login screen (user data retained)
+
+---
+
+### 🧠 Auth Logic (Core Idea)
+
+```js
+const [auth, setAuth] = useState(
+  localStorage.getItem("auth") === "true"
+);
+
+if (!auth) {
+  return <Login / Signup />;
+}
+```
+
+---
+
+## 🧩 Architecture Highlights
+
+### 🔒 Protected Layout Routing (UPDATED)
+
+* App routes only render **after authentication**
+* Layout includes:
+
+  * ✅ Navbar
   * ✅ Dynamic content (`Outlet`)
-  * ✅ Footer (bottom)
-* Ensures **consistent UI across all routes**
+  * ✅ Footer
 
 ```jsx
-<Navbar />
-<Outlet />
-<Footer />
+{auth ? (
+  <BrowserRouter>
+    <Layout />
+  </BrowserRouter>
+) : (
+  <LoginSignup />
+)}
 ```
 
 ---
@@ -41,55 +83,54 @@ It uses a **shared layout system** with a persistent Navbar and Footer across al
 
 ### 🔗 Routing System
 
-* Built with React Router
+* Built with `react-router-dom`
 * Nested routes using `Outlet`
 * Pages:
 
   * `/` → Home
-  * `/play` → Play
-  * `/about` → About / FAQ
+  * `/Play` → Play
+  * `/About` → About / FAQ
 
 ---
 
 ### 🏠 Home Page
 
-* Hero section for first impression
+* Hero section
 * Venue booking UI
-* Game discovery section
-* Popular sports showcase
-* FAQ section
+* Game discovery
+* Popular sports
+* FAQ
 
 ---
 
 ### 🏃 Play Page
 
-* Multi-section layout using:
-
-  * `Part2`, `Part3`, `Part4`
-* Card-based UI for activities
-* Designed for scalability
+* Modular sections (`Part2`, `Part3`, `Part4`)
+* Card-based UI
+* Scalable design
 
 ---
 
 ### ❓ About / FAQ Page
 
 * Frequently asked questions
-* Platform information
+* Platform details
 
 ---
 
-### 🧭 Navbar
+### 🧭 Navbar (UPDATED)
 
-* Navigation across pages
-* Uses React Router (`Link` / `NavLink`)
-* Persistent across all routes
+* Navigation across routes
+* Logout button
+* Logout clears auth (not user data)
+* Redirects to Login screen
 
 ---
 
 ### 📌 Footer
 
-* Common footer across all pages
-* Improves layout completeness
+* Persistent across all pages
+* Improves UI consistency
 
 ---
 
@@ -97,8 +138,8 @@ It uses a **shared layout system** with a persistent Navbar and Footer across al
 
 * ⚛️ React
 * ⚡ Vite
-* 🧭 React Router
-* 🎨 CSS
+* 🧭 React Router DOM
+* 🎨 CSS Modules + CSS
 
 ---
 
@@ -109,10 +150,8 @@ src/
 │── components/
 │   ├── Navbar/
 │   ├── Footer/
-│   ├── Herosection/
-│   ├── BookVenues/
-│   ├── DiscoverGames/
-│   ├── PopularSports/
+│   ├── Logincard/
+│   ├── Signupcard/
 │   ├── AboutFAQ/
 │
 │── components2/
@@ -124,7 +163,6 @@ src/
 │── Layout.jsx
 │── Home.jsx
 │── Play.jsx
-│── App.jsx
 │── main.jsx
 ```
 
@@ -145,6 +183,12 @@ Install dependencies:
 npm install
 ```
 
+Install router (important):
+
+```bash
+npm install react-router-dom
+```
+
 Run the app:
 
 ```bash
@@ -155,27 +199,37 @@ npm run dev
 
 ## 🌐 Routing Summary
 
-| Route    | Description     |
-| -------- | --------------- |
-| `/`      | Home page       |
-| `/play`  | Play activities |
-| `/about` | FAQ / About     |
+| Route    | Access       | Description     |
+| -------- | ------------ | --------------- |
+| `/`      | 🔒 Protected | Home page       |
+| `/Play`  | 🔒 Protected | Play activities |
+| `/About` | 🔒 Protected | FAQ / About     |
+
+---
+
+## 🔐 LocalStorage Usage
+
+| Key    | Purpose                  |
+| ------ | ------------------------ |
+| `user` | Stores user details      |
+| `auth` | Login state (true/false) |
 
 ---
 
 ## 📸 Screenshots
 
-> *(Add UI screenshots here for better presentation)*
+> *(Add Login, Signup, Dashboard screenshots here for best impact)*
 
 ---
 
 ## 🔮 Future Improvements
 
-* 🔐 Authentication system
-* 📍 Location-based search
+* 🔐 Multi-user authentication
+* 🌐 Backend integration (JWT / API)
+* 📍 Location-based sports search
 * 💳 Booking & payments
 * 📱 Mobile responsiveness
-* 🌙 Dark mode
+* 🌙 Dark mode toggle
 
 ---
 
@@ -188,10 +242,11 @@ Feel free to fork and submit pull requests.
 
 ## 📄 License
 
-This project is for learning and demonstration purposes.
+For learning and demonstration purposes.
 
 ---
 
 ## 👩‍💻 Author
 
-**Palakpreet Kaur and Manas Sandhu**
+**Palakpreet Kaur & Manas Sandhu**
+
